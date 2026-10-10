@@ -5,6 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAMP STORE — Премиум сборки GTA San Andreas</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стильный переключатель версий внутри карточки */
+        .version-switcher {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 4px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .v-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .v-btn.active {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+        }
+    </style>
 </head>
 <body>
 
@@ -12,7 +43,7 @@
         <div class="container">
             <div class="logo">SAMP STORE</div>
             <nav>
-                <a href="#catalog">Сборки</a>
+                <a href="#catalog">Каталог</a>
                 <a href="#reviews">Отзывы</a>
             </nav>
         </div>
@@ -40,65 +71,39 @@
     </section>
 
     <section id="catalog" class="container">
-        <h2 class="section-title">Каталог приватных сборок</h2>
-        <div class="build-grid">
+        <h2 class="section-title">Каталог приватных тарифов</h2>
+        <div class="build-grid" style="justify-content: center; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 400px));">
             
-            <!-- Товар 1 -->
+            <!-- ТАРИФ GHETTO FPS UP С ВЫБОРОМ ПРИВАТНЫХ СБОРОК -->
             <div class="build-card">
                 <div class="build-img-wrapper">
-                    <span class="build-badge" style="color: #ff4fac;">LOW PC</span>
+                    <span class="build-badge" id="buildBadge" style="color: #ffffff;">PREMIUM PRIVAT</span>
                     <img src="https://unsplash.com" class="build-img" alt="Ghetto">
                 </div>
                 <div class="build-content">
-                    <h3>Ghetto FPS Up Edition</h3>
-                    <ul class="build-specs">
-                        <li>Сжатые текстуры без потери читаемости</li>
-                        <li>Эксклюзивные приватные таймциклы</li>
-                        <li>Вырезан весь мусор для каптов</li>
-                    </ul>
-                    <div class="build-bottom">
-                        <div class="price">150 <span>₽</span></div>
-                        <a href="https://t.me/nexuscoder52" target="_blank" class="btn-buy">Купить</a>
+                    <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 15px; color: #fff;">Ghetto FPS Up Edition</h2>
+                    
+                    <!-- КНОПКИ ПЕРЕКЛЮЧЕНИЯ ПЛАТНЫХ СБОРОК -->
+                    <div class="version-switcher">
+                        <button class="v-btn active" onclick="switchBuild('bw')">B&W Classic</button>
+                        <button class="v-btn" onclick="switchBuild('toxic')">Toxic Neon</button>
                     </div>
-                </div>
-            </div>
 
-            <!-- Товар 2 -->
-            <div class="build-card">
-                <div class="build-img-wrapper">
-                    <span class="build-badge" style="color: #00f2fe;">MEDIUM PC</span>
-                    <img src="https://unsplash.com" class="build-img" alt="State">
-                </div>
-                <div class="build-content">
-                    <h3>Atmospheric RolePlay</h3>
-                    <ul class="build-specs">
-                        <li>Кастомный SkyBox и красивое освещение</li>
-                        <li>Заменены все иконки худа и шрифты</li>
-                        <li>HD текстуры дорог без нагрузки на ПК</li>
+                    <!-- Название текущей сборки -->
+                    <h3 id="buildName" style="color: #ffffff; transition: 0.2s;">Black & White Classic</h3>
+                    
+                    <!-- Список характеристик -->
+                    <ul class="build-specs" id="buildSpecs" style="margin-top: 12px;">
+                        <li>Строгий монохромный HUD (Белая буква "S" на черном фоне)</li>
+                        <li>Эксклюзивный Desert Eagle Chrome / Matte Black</li>
+                        <li>Контрастный Timecyc для идеальной видимости скинов на каптах</li>
                     </ul>
-                    <div class="build-bottom">
-                        <div class="price">290 <span>₽</span></div>
-                        <a href="https://t.me/nexuscoder52" target="_blank" class="btn-buy">Купить</a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Товар 3 -->
-            <div class="build-card">
-                <div class="build-img-wrapper">
-                    <span class="build-badge" style="color: #ffa502;">POWER PC</span>
-                    <img src="https://unsplash.com" class="build-img" alt="Ultra">
-                </div>
-                <div class="build-content">
-                    <h3>NextGen Cinematic ENB</h3>
-                    <ul class="build-specs">
-                        <li>Настроенный графический движок ENB</li>
-                        <li>4K текстуры авто, дорог и растительности</li>
-                        <li>Новые реалистичные анимации</li>
-                    </ul>
                     <div class="build-bottom">
-                        <div class="price">490 <span>₽</span></div>
-                        <a href="https://t.me/nexuscoder52" target="_blank" class="btn-buy">Купить</a>
+                        <!-- Цена -->
+                        <div class="price" id="buildPrice">150 <span>₽</span></div>
+                        <!-- Кнопка действия -->
+                        <a href="https://t.me" id="buildLink" target="_blank" class="btn-buy">Купить</a>
                     </div>
                 </div>
             </div>
@@ -122,9 +127,70 @@
 
     <footer>
         <div class="container">
-            <p>© 2027 SAMP STORE. Все права защищены. Связь в Telegram: @nexuscoder52</p>
+            <p>© 2026 SAMP STORE. Все права защищены. Связь в Telegram: @nexuscoder52</p>
         </div>
     </footer>
+
+    <!-- СКРИПТ ЖИВОГО ПЕРЕКЛЮЧЕНИЯ ПЛАТНЫХ ТОВАРОВ -->
+    <script>
+        const buildData = {
+            bw: {
+                badge: 'PREMIUM PRIVAT',
+                badgeColor: '#ffffff',
+                name: 'Black & White Classic (by samp store)',
+                nameColor: '#ffffff',
+                specs: [
+                    'Строгий монохромный HUD (Белая буква "S" на черном фоне)',
+                    'Эксклюзивный Desert Eagle Chrome / Matte Black',
+                    'Контрастный Timecyc для идеальной видимости скинов на каптах'
+                ],
+                price: '150 <span>₽</span>',
+                link: 'https://t.me'
+            },
+            toxic: {
+                badge: 'TOXIC EDITION',
+                badgeColor: '#00f2fe',
+                name: 'Toxic Neon Edition (by samp store)',
+                nameColor: '#00f2fe',
+                specs: [
+                    'Ядовито-зеленый неоновый HUD и кастомный прицел-точка',
+                    'Эксклюзивный Deagle со светящимся кислотным принтом',
+                    'Приватные скрипты оптимизации (Стабильные 230-250 FPS)'
+                ],
+                price: '150 <span>₽</span>',
+                link: 'https://t.me'
+            }
+        };
+
+        function switchBuild(type) {
+            // Переключаем активный класс на кнопках
+            const buttons = document.querySelectorAll('.v-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Получаем данные
+            const data = buildData[type];
+
+            // Обновляем карточку
+            document.getElementById('buildBadge').innerText = data.badge;
+            document.getElementById('buildBadge').style.color = data.badgeColor;
+            
+            const nameEl = document.getElementById('buildName');
+            nameEl.innerText = data.name;
+            nameEl.style.color = data.nameColor;
+
+            const specsUl = document.getElementById('buildSpecs');
+            specsUl.innerHTML = '';
+            data.specs.forEach(spec => {
+                const li = document.createElement('li');
+                li.innerText = spec;
+                specsUl.appendChild(li);
+            });
+
+            document.getElementById('buildPrice').innerHTML = data.price;
+            document.getElementById('buildLink').href = data.link;
+        }
+    </script>
 
 </body>
 </html>
