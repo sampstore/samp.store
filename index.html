@@ -1,233 +1,188 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Market Analytics | Калькулятор Перекупа</title>
-    <!-- Подключаем Tailwind CSS для красивых стилей -->
-    <script src="https://tailwindcss.com"></script>
-    <style>
-        /* Фирменный градиент в стиле Black Russia */
-        .br-gradient {
-            background: linear-gradient(135deg, #1a0b2e 0%, #11071c 100%);
-        }
-        .br-accent {
-            background: linear-gradient(90deg, #ff0055 0%, #9900ff 100%);
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BLACK RUSSIA MARKET — Всё для перекупов</title>
+<style>
+:root{--bg:#07111d;--panel:#0c1a2a;--panel2:#102238;--line:#1d3550;--text:#e8f2ff;--muted:#91a8c5;--blue:#31a8ff;--green:#00dfa0;--gold:#f4c77a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -10%,#17365b 0,transparent 35%),var(--bg);color:var(--text);font:14px/1.45 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,select{font:inherit}button,select{cursor:pointer}button{color:inherit}.top{height:68px;display:flex;align-items:center;gap:28px;padding:0 24px;border-bottom:1px solid var(--line);background:#07111de8;position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}.brand{display:flex;align-items:center;gap:11px;min-width:225px;font-weight:800;letter-spacing:.5px}.logo{font-size:28px;color:var(--gold)}.brand small{display:block;font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:600}.nav{display:flex;gap:24px;color:#b4c7e1}.nav a{color:inherit;text-decoration:none}.nav a:hover{color:var(--blue)}.server-top{margin-left:auto;display:flex;align-items:center;gap:10px}.select,.search,input,select{background:#081522;border:1px solid var(--line);border-radius:9px;color:var(--text);padding:10px 12px;outline:none}.select:focus,input:focus,select:focus{border-color:var(--blue)}.layout{display:grid;grid-template-columns:205px minmax(0,1fr) 280px;gap:16px;padding:16px;max-width:1700px;margin:auto}.sidebar,.rightcol{min-width:0}.side-links{display:grid;gap:5px}.side-links button{border:1px solid transparent;background:transparent;text-align:left;padding:12px;border-radius:9px;color:#a9bed8}.side-links button.active,.side-links button:hover{background:var(--panel2);border-color:var(--line);color:white}.side-links span{display:inline-block;width:25px}.sidebox,.box{background:linear-gradient(145deg,#0d1c2c,#081421);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:14px}.sidebox p{color:var(--muted);margin:6px 0 12px}.hero{min-height:190px;border:1px solid #29425e;border-radius:13px;overflow:hidden;padding:24px;background:linear-gradient(90deg,#09172aeF 0%,#102440df 48%,#10244030 100%),url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80') center 54%/cover}.hero h1{font-size:clamp(23px,2.2vw,34px);line-height:1.12;margin:0 0 12px;max-width:660px}.hero p{color:#bdd0e8;margin:0 0 16px}.search{width:min(100%,700px);padding:13px 15px;background:#071321eF}.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.tile{display:flex;align-items:center;gap:12px;text-align:left;padding:14px;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:var(--text)}.tile:hover,.tile.selected{border-color:var(--blue);background:#102741}.tile .ico{font-size:25px}.tile small{display:block;color:var(--muted);font-size:11px}.section-head{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px}.section-head h2{font-size:18px;margin:0}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.filters select{flex:1;min-width:120px;font-size:12px}.reset,.btn{border:1px solid var(--line);border-radius:8px;background:#10243a;padding:9px 12px}.reset:hover,.btn:hover{border-color:var(--blue)}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{background:linear-gradient(160deg,#0e1e30,#081421);border:1px solid var(--line);border-radius:11px;overflow:hidden;min-width:0}.car-img{height:135px;background:#14253a;display:flex;align-items:center;justify-content:center;overflow:hidden}.car-img img{width:100%;height:100%;object-fit:cover}.placeholder{font-size:44px;opacity:.85}.cardbody{padding:12px}.card h3{font-size:14px;margin:0 0 5px}.tag{display:inline-block;background:#132a43;color:#b5d3f5;border:1px solid #294765;border-radius:20px;padding:2px 8px;font-size:10px;margin-bottom:10px}.price-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin:7px 0;color:var(--muted)}.price-row strong{color:var(--text);font-weight:650;text-align:right}.gain{color:var(--green);font-weight:700}.card-actions{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}.fav{background:none;border:0;color:#8ca5c2;font-size:18px}.fav.on{color:var(--gold)}.smallbtn{padding:6px 9px;font-size:11px}.box h3{margin:0 0 10px;font-size:14px}.muted{color:var(--muted)}.server-state{display:flex;justify-content:space-between;font-size:12px;margin:10px 0}.green{color:var(--green)}.spark{height:48px;margin:12px 0;background:linear-gradient(180deg,#00dfa020,transparent);border-bottom:1px solid #00dfa0;clip-path:polygon(0 75%,7% 54%,13% 67%,19% 38%,27% 50%,34% 26%,42% 43%,50% 20%,58% 37%,65% 16%,72% 30%,79% 8%,86% 20%,93% 5%,100% 0,100% 100%,0 100%)}.minirow{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #172b40;font-size:11px}.minirow:last-child{border:0}.minirow img{width:42px;height:32px;object-fit:cover;border-radius:5px}.minirow strong{display:block;font-size:11px}.tabs{display:flex;gap:7px;margin-bottom:12px}.tabs button{flex:1;background:#0b1b2b;border:1px solid var(--line);padding:7px;border-radius:7px;font-size:11px;color:var(--muted)}.tabs button.active{background:#18324e;color:white}.calc-line{display:flex;justify-content:space-between;gap:8px;margin:10px 0;font-size:12px}.calc-line input{width:130px;padding:6px;text-align:right}.profit{border-top:1px solid var(--line);padding-top:12px;color:var(--green);font-weight:800;font-size:16px}.notice{font-size:11px;color:var(--muted);line-height:1.5}.empty{padding:35px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:10px;grid-column:1/-1}.footer{padding:24px;text-align:center;color:#7189a6;font-size:11px}.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;z-index:10;padding:20px}.modal.open{display:grid}.modalbox{max-width:520px;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}.modalbox h2{margin-top:0}.close{float:right;background:none;border:0;font-size:22px}.pill{font-size:11px;color:var(--gold)}
+
+.market-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:28px 0 12px}
+.market-head h2{margin:0;font-size:21px}.market-head p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.market-tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.market-tools input,.market-tools select{min-width:145px;flex:1}
+.primary{background:linear-gradient(135deg,#168ce0,#1764b3);border:1px solid #2a9bf2;border-radius:9px;padding:10px 14px;color:white;font-weight:700}
+.primary:hover{filter:brightness(1.12)}
+.listing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.listing-card{background:linear-gradient(160deg,#102238,#081421);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}
+.listing-photo{height:160px;background:#14253a;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.listing-photo img{width:100%;height:100%;object-fit:cover}
+.listing-photo .sample{font-size:54px}
+.listing-photo .server-label{position:absolute;left:9px;top:9px;background:#071321dd;border:1px solid #294765;border-radius:20px;padding:4px 8px;font-size:10px}
+.listing-body{padding:12px}.listing-body h3{margin:0 0 5px;font-size:15px}
+.listing-price{font-size:20px;font-weight:800;margin:9px 0 2px}
+.listing-meta{font-size:11px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px}
+.listing-desc{font-size:12px;color:#bfd0e4;margin:9px 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.listing-contact{display:flex;gap:7px;margin-top:12px}.listing-contact a{flex:1;text-align:center;text-decoration:none;font-size:12px;padding:8px 6px;border:1px solid var(--line);border-radius:8px;color:#dcecff;background:#10243a}
+.listing-contact a:hover{border-color:var(--blue)}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.form-field{display:flex;flex-direction:column;gap:5px;color:#b8cbe3;font-size:12px}
+.form-field input,.form-field select,.form-field textarea{width:100%;min-width:0}
+.form-field textarea{min-height:75px;resize:vertical;background:#081522;border:1px solid var(--line);border-radius:9px;color:var(--text);padding:10px}
+.form-field.full{grid-column:1/-1}
+.upload-area{border:1px dashed #355674;border-radius:10px;padding:14px;text-align:center;background:#091726}
+.upload-area input{border:0;padding:8px;background:transparent}
+.form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
+.disclaimer{font-size:11px;color:var(--muted);line-height:1.5}
+@media(max-width:1200px){.listing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.listing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.listing-photo{height:115px}.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}}
+@media(max-width:420px){.listing-grid{grid-template-columns:1fr}.listing-photo{height:170px}}
+
+@media(max-width:1200px){.layout{grid-template-columns:180px minmax(0,1fr)}.rightcol{grid-column:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.rightcol .box{margin-top:0}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.nav{gap:12px}}
+@media(max-width:760px){.top{padding:0 12px;height:auto;min-height:62px;flex-wrap:wrap;gap:12px}.brand{min-width:0}.nav{order:3;width:100%;overflow:auto;padding-bottom:10px}.server-top .online{display:none}.layout{display:block;padding:10px}.sidebar{display:none}.hero{padding:19px;min-height:215px}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.car-img{height:105px}.cardbody{padding:9px}.rightcol{display:block;margin-top:14px}.rightcol .box{margin-top:12px}.brand small{letter-spacing:1px}.server-top{margin-left:auto}.server-top select{max-width:145px}.hero h1{font-size:24px}}
+@media(max-width:420px){.cards{grid-template-columns:1fr}.car-img{height:155px}.tiles{gap:7px}.tile{padding:10px}.filters select{min-width:42%}}
+</style>
 </head>
-<body class="br-gradient text-gray-100 min-h-screen font-sans">
+<body>
+<header class="top">
+  <div class="brand"><div class="logo">♛</div><div>BLACK RUSSIA MARKET<small>BLACK RUSSIA · РЫНОК И ПЕРЕКУП</small></div></div>
+  <nav class="nav"><a href="#catalog">Главная</a><a href="#catalog">Каталог</a><a href="#marketplace">Авторынок</a><a href="#compare">Сравнение цен</a><a href="#analytics">Аналитика</a><a href="#favorites" id="favNav">Избранное</a></nav>
+  <div class="server-top"><span class="muted">Сервер:</span><select id="serverTop" class="select"><option>BLACK RUSSIA — Сервер №01 | RED</option><option>BLACK RUSSIA — Сервер №02 | GREEN</option><option>BLACK RUSSIA — Сервер №03 | BLUE</option><option>BLACK RUSSIA — Сервер №04 | YELLOW</option><option>BLACK RUSSIA — Сервер №05 | ORANGE</option><option>BLACK RUSSIA — Сервер №06 | PURPLE</option><option>BLACK RUSSIA — Сервер №07 | LIME</option><option>BLACK RUSSIA — Сервер №08 | PINK</option><option>BLACK RUSSIA — Сервер №09 | CHERRY</option><option>BLACK RUSSIA — Сервер №10 | BLACK</option><option>BLACK RUSSIA — Сервер №11 | INDIGO</option><option>BLACK RUSSIA — Сервер №12 | WHITE</option><option>BLACK RUSSIA — Сервер №13 | MAGENTA</option><option>BLACK RUSSIA — Сервер №14 | CRIMSON</option><option>BLACK RUSSIA — Сервер №15 | GOLD</option><option>BLACK RUSSIA — Сервер №16 | AZURE</option><option>BLACK RUSSIA — Сервер №17 | PLATINUM</option><option>BLACK RUSSIA — Сервер №18 | AQUA</option><option>BLACK RUSSIA — Сервер №19 | GRAY</option><option>BLACK RUSSIA — Сервер №20 | ICE</option><option>BLACK RUSSIA — Сервер №21 | CHILLI</option><option>BLACK RUSSIA — Сервер №22 | CHOCO</option><option>BLACK RUSSIA — Сервер №23 | MOSCOW</option><option>BLACK RUSSIA — Сервер №24 | SPB</option><option>BLACK RUSSIA — Сервер №25 | UFA</option><option>BLACK RUSSIA — Сервер №26 | SOCHI</option><option>BLACK RUSSIA — Сервер №27 | KAZAN</option><option>BLACK RUSSIA — Сервер №28 | SAMARA</option><option>BLACK RUSSIA — Сервер №29 | ROSTOV</option><option>BLACK RUSSIA — Сервер №30 | ANAPA</option><option>BLACK RUSSIA — Сервер №31 | EKB</option><option>BLACK RUSSIA — Сервер №32 | KRASNODAR</option><option>BLACK RUSSIA — Сервер №33 | ARZAMAS</option><option>BLACK RUSSIA — Сервер №34 | NOVOSIB</option><option>BLACK RUSSIA — Сервер №35 | GROZNY</option><option>BLACK RUSSIA — Сервер №36 | SARATOV</option><option>BLACK RUSSIA — Сервер №37 | OMSK</option><option>BLACK RUSSIA — Сервер №38 | IRKUTSK</option><option>BLACK RUSSIA — Сервер №39 | VOLGOGRAD</option><option>BLACK RUSSIA — Сервер №40 | VORONEZH</option><option>BLACK RUSSIA — Сервер №41 | BELGOROD</option><option>BLACK RUSSIA — Сервер №42 | MAKHACHKALA</option><option>BLACK RUSSIA — Сервер №43 | VLADIKAVKAZ</option><option>BLACK RUSSIA — Сервер №44 | VLADIVOSTOK</option><option>BLACK RUSSIA — Сервер №45 | KALININGRAD</option><option>BLACK RUSSIA — Сервер №46 | CHELYABINSK</option><option>BLACK RUSSIA — Сервер №47 | KRASNOYARSK</option><option>BLACK RUSSIA — Сервер №48 | CHEBOKSARY</option><option>BLACK RUSSIA — Сервер №49 | KHABAROVSK</option><option>BLACK RUSSIA — Сервер №50 | PERM</option><option>BLACK RUSSIA — Сервер №51 | TULA</option><option>BLACK RUSSIA — Сервер №52 | RYAZAN</option><option>BLACK RUSSIA — Сервер №53 | MURMANSK</option><option>BLACK RUSSIA — Сервер №54 | PENZA</option><option>BLACK RUSSIA — Сервер №55 | KURSK</option><option>BLACK RUSSIA — Сервер №56 | ARKHANGELSK</option><option>BLACK RUSSIA — Сервер №57 | ORENBURG</option><option>BLACK RUSSIA — Сервер №58 | KIROV</option><option>BLACK RUSSIA — Сервер №59 | KEMEROVO</option><option>BLACK RUSSIA — Сервер №60 | TYUMEN</option><option>BLACK RUSSIA — Сервер №61 | TOLYATTI</option><option>BLACK RUSSIA — Сервер №62 | IVANOVO</option><option>BLACK RUSSIA — Сервер №63 | STAVROPOL</option><option>BLACK RUSSIA — Сервер №64 | SMOLENSK</option><option>BLACK RUSSIA — Сервер №65 | PSKOV</option><option>BLACK RUSSIA — Сервер №66 | BRYANSK</option><option>BLACK RUSSIA — Сервер №67 | OREL</option><option>BLACK RUSSIA — Сервер №68 | YAROSLAVL</option><option>BLACK RUSSIA — Сервер №69 | BARNAUL</option><option>BLACK RUSSIA — Сервер №70 | LIPETSK</option><option>BLACK RUSSIA — Сервер №71 | ULYANOVSK</option><option>BLACK RUSSIA — Сервер №72 | YAKUTSK</option><option>BLACK RUSSIA — Сервер №73 | TAMBOV</option><option>BLACK RUSSIA — Сервер №74 | BRATSK</option><option>BLACK RUSSIA — Сервер №75 | ASTRAKHAN</option><option>BLACK RUSSIA — Сервер №76 | CHITA</option><option>BLACK RUSSIA — Сервер №77 | KOSTROMA</option><option>BLACK RUSSIA — Сервер №78 | VLADIMIR</option><option>BLACK RUSSIA — Сервер №79 | KALUGA</option><option>BLACK RUSSIA — Сервер №80 | NOVGOROD</option><option>BLACK RUSSIA — Сервер №81 | TAGANROG</option><option>BLACK RUSSIA — Сервер №82 | VOLOGDA</option><option>BLACK RUSSIA — Сервер №83 | TVER</option><option>BLACK RUSSIA — Сервер №84 | TOMSK</option><option>BLACK RUSSIA — Сервер №85 | IZHEVSK</option><option>BLACK RUSSIA — Сервер №86 | SURGUT</option><option>BLACK RUSSIA — Сервер №87 | PODOLSK</option><option>BLACK RUSSIA — Сервер №88 | MAGADAN</option><option>BLACK RUSSIA — Сервер №89 | CHEREPOVETS</option><option>BLACK RUSSIA — Сервер №90 | NORILSK</option><option>BLACK RUSSIA — Сервер №91 | ASTANA</option></select><span class="online green">● Онлайн</span></div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+ <div class="side-links">
+  <button class="active" data-cat="Все"><span>🚘</span> Все товары</button><button data-cat="Авто"><span>🚗</span> Автомобили</button><button data-cat="Скины"><span>👕</span> Скины</button><button data-cat="Аксессуары"><span>💎</span> Аксессуары</button><button id="sideFav"><span>🔖</span> Мои закладки</button><button onclick="document.querySelector('#compare').scrollIntoView({behavior:'smooth'})"><span>📊</span> Сравнение цен</button><button onclick="document.querySelector('#calc').scrollIntoView({behavior:'smooth'})"><span>🧮</span> Калькулятор прибыли</button>
+ </div>
+ <div class="sidebox"><div class="logo">♛</div><strong>Перекупы зарабатывают на знании рынка.</strong><p>Следи за ценами, сравнивай предложения и считай прибыль.</p><button class="btn" onclick="showInfo()">Как это работает? →</button></div>
+ <div class="sidebox"><strong>Быстрый переход</strong><p>Выбери категорию, чтобы отфильтровать каталог.</p><button class="btn" style="width:100%;margin:3px 0" data-short="Авто">🚘 Популярные авто</button><button class="btn" style="width:100%;margin:3px 0" data-short="Скины">👕 Топ скины</button><button class="btn" style="width:100%;margin:3px 0" data-short="Аксессуары">💎 Редкие аксессуары</button></div>
+</aside>
+<main>
+ <section class="hero"><h1>КАТАЛОГ АВТО, СКИНОВ,<br>АКСЕССУАРОВ И ЦЕН ПО СЕРВЕРАМ</h1><p>Госцены и рыночные ориентиры в одном месте.<br>Выбирай сервер, анализируй и считай прибыль.</p><input id="search" class="search" placeholder="⌕  Поиск по названию, модели или категории…"></section>
+ <section class="tiles">
+  <button class="tile selected" data-cat="Авто"><span class="ico">🚘</span><span>Автомобили<small>Машины и транспорт</small></span></button>
+  <button class="tile" data-cat="Скины"><span class="ico">👕</span><span>Скины<small>Одежда и образы</small></span></button>
+  <button class="tile" data-cat="Аксессуары"><span class="ico">💎</span><span>Аксессуары<small>Редкие предметы</small></span></button>
+  <button class="tile" data-cat="Все"><span class="ico">⭐</span><span>Весь каталог<small>Все позиции</small></span></button>
+ </section>
+ <div class="section-head" id="catalog"><h2 id="catalogTitle">Автомобили</h2><span class="muted" id="resultCount">— позиций</span></div>
+ <div class="filters"><select id="categoryFilter"><option value="Все">Все категории</option><option>Авто</option><option>Скины</option><option>Аксессуары</option></select><select id="sort"><option value="default">Сортировка: по умолчанию</option><option value="profit">По потенциалу прибыли</option><option value="priceAsc">Цена: сначала дешевле</option><option value="priceDesc">Цена: сначала дороже</option><option value="name">По названию</option></select><select id="dealFilter"><option value="all">Все предложения</option><option value="good">Потенциал от 20%</option></select><button class="reset" id="reset">Сбросить</button></div>
+ <div class="cards" id="cards"></div>
 
-    <!-- Навигация (Шапка сайта) -->
-    <header class="border-b border-purple-900/40 bg-black/40 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <span class="text-2xl font-black tracking-wider text-transparent bg-clip-text br-accent">BR MARKET</span>
-                <span class="bg-purple-900/60 text-purple-300 text-xs px-2 py-1 rounded border border-purple-500/30 uppercase tracking-widest font-bold">Beta</span>
-            </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="#" class="text-white border-b-2 border-pink-500 pb-1">Калькулятор</a>
-                <a href="#" class="text-gray-400 hover:text-white transition">База Цен</a>
-                <a href="#" class="text-gray-400 hover:text-white transition">Тренды рынка</a>
-            </nav>
-            <div class="text-xs text-gray-400 bg-purple-950/40 px-3 py-1.5 rounded-lg border border-purple-900/50">
-                Сервер: <span class="text-pink-500 font-bold">Crimson</span>
-            </div>
-        </div>
-    </header>
+ <section id="marketplace" style="margin-top:30px">
+  <div class="market-head"><div><h2>🚘 Игровой авторынок</h2><p>Объявления игроков · выбирай сервер · договаривайся напрямую</p></div><button class="primary" id="openListingForm">＋ Подать объявление</button></div>
+  <div class="box" id="listingFormBox" style="display:none;margin:12px 0">
+   <h3>Новое объявление</h3>
+   <form id="listingForm">
+    <div class="form-grid">
+     <label class="form-field">Игровой сервер<select id="listingServer" required><option>BLACK RUSSIA — Сервер №01 | RED</option><option>BLACK RUSSIA — Сервер №02 | GREEN</option><option>BLACK RUSSIA — Сервер №03 | BLUE</option><option>BLACK RUSSIA — Сервер №04 | YELLOW</option><option>BLACK RUSSIA — Сервер №05 | ORANGE</option><option>BLACK RUSSIA — Сервер №06 | PURPLE</option><option>BLACK RUSSIA — Сервер №07 | LIME</option><option>BLACK RUSSIA — Сервер №08 | PINK</option><option>BLACK RUSSIA — Сервер №09 | CHERRY</option><option>BLACK RUSSIA — Сервер №10 | BLACK</option><option>BLACK RUSSIA — Сервер №11 | INDIGO</option><option>BLACK RUSSIA — Сервер №12 | WHITE</option><option>BLACK RUSSIA — Сервер №13 | MAGENTA</option><option>BLACK RUSSIA — Сервер №14 | CRIMSON</option><option>BLACK RUSSIA — Сервер №15 | GOLD</option><option>BLACK RUSSIA — Сервер №16 | AZURE</option><option>BLACK RUSSIA — Сервер №17 | PLATINUM</option><option>BLACK RUSSIA — Сервер №18 | AQUA</option><option>BLACK RUSSIA — Сервер №19 | GRAY</option><option>BLACK RUSSIA — Сервер №20 | ICE</option><option>BLACK RUSSIA — Сервер №21 | CHILLI</option><option>BLACK RUSSIA — Сервер №22 | CHOCO</option><option>BLACK RUSSIA — Сервер №23 | MOSCOW</option><option>BLACK RUSSIA — Сервер №24 | SPB</option><option>BLACK RUSSIA — Сервер №25 | UFA</option><option>BLACK RUSSIA — Сервер №26 | SOCHI</option><option>BLACK RUSSIA — Сервер №27 | KAZAN</option><option>BLACK RUSSIA — Сервер №28 | SAMARA</option><option>BLACK RUSSIA — Сервер №29 | ROSTOV</option><option>BLACK RUSSIA — Сервер №30 | ANAPA</option><option>BLACK RUSSIA — Сервер №31 | EKB</option><option>BLACK RUSSIA — Сервер №32 | KRASNODAR</option><option>BLACK RUSSIA — Сервер №33 | ARZAMAS</option><option>BLACK RUSSIA — Сервер №34 | NOVOSIB</option><option>BLACK RUSSIA — Сервер №35 | GROZNY</option><option>BLACK RUSSIA — Сервер №36 | SARATOV</option><option>BLACK RUSSIA — Сервер №37 | OMSK</option><option>BLACK RUSSIA — Сервер №38 | IRKUTSK</option><option>BLACK RUSSIA — Сервер №39 | VOLGOGRAD</option><option>BLACK RUSSIA — Сервер №40 | VORONEZH</option><option>BLACK RUSSIA — Сервер №41 | BELGOROD</option><option>BLACK RUSSIA — Сервер №42 | MAKHACHKALA</option><option>BLACK RUSSIA — Сервер №43 | VLADIKAVKAZ</option><option>BLACK RUSSIA — Сервер №44 | VLADIVOSTOK</option><option>BLACK RUSSIA — Сервер №45 | KALININGRAD</option><option>BLACK RUSSIA — Сервер №46 | CHELYABINSK</option><option>BLACK RUSSIA — Сервер №47 | KRASNOYARSK</option><option>BLACK RUSSIA — Сервер №48 | CHEBOKSARY</option><option>BLACK RUSSIA — Сервер №49 | KHABAROVSK</option><option>BLACK RUSSIA — Сервер №50 | PERM</option><option>BLACK RUSSIA — Сервер №51 | TULA</option><option>BLACK RUSSIA — Сервер №52 | RYAZAN</option><option>BLACK RUSSIA — Сервер №53 | MURMANSK</option><option>BLACK RUSSIA — Сервер №54 | PENZA</option><option>BLACK RUSSIA — Сервер №55 | KURSK</option><option>BLACK RUSSIA — Сервер №56 | ARKHANGELSK</option><option>BLACK RUSSIA — Сервер №57 | ORENBURG</option><option>BLACK RUSSIA — Сервер №58 | KIROV</option><option>BLACK RUSSIA — Сервер №59 | KEMEROVO</option><option>BLACK RUSSIA — Сервер №60 | TYUMEN</option><option>BLACK RUSSIA — Сервер №61 | TOLYATTI</option><option>BLACK RUSSIA — Сервер №62 | IVANOVO</option><option>BLACK RUSSIA — Сервер №63 | STAVROPOL</option><option>BLACK RUSSIA — Сервер №64 | SMOLENSK</option><option>BLACK RUSSIA — Сервер №65 | PSKOV</option><option>BLACK RUSSIA — Сервер №66 | BRYANSK</option><option>BLACK RUSSIA — Сервер №67 | OREL</option><option>BLACK RUSSIA — Сервер №68 | YAROSLAVL</option><option>BLACK RUSSIA — Сервер №69 | BARNAUL</option><option>BLACK RUSSIA — Сервер №70 | LIPETSK</option><option>BLACK RUSSIA — Сервер №71 | ULYANOVSK</option><option>BLACK RUSSIA — Сервер №72 | YAKUTSK</option><option>BLACK RUSSIA — Сервер №73 | TAMBOV</option><option>BLACK RUSSIA — Сервер №74 | BRATSK</option><option>BLACK RUSSIA — Сервер №75 | ASTRAKHAN</option><option>BLACK RUSSIA — Сервер №76 | CHITA</option><option>BLACK RUSSIA — Сервер №77 | KOSTROMA</option><option>BLACK RUSSIA — Сервер №78 | VLADIMIR</option><option>BLACK RUSSIA — Сервер №79 | KALUGA</option><option>BLACK RUSSIA — Сервер №80 | NOVGOROD</option><option>BLACK RUSSIA — Сервер №81 | TAGANROG</option><option>BLACK RUSSIA — Сервер №82 | VOLOGDA</option><option>BLACK RUSSIA — Сервер №83 | TVER</option><option>BLACK RUSSIA — Сервер №84 | TOMSK</option><option>BLACK RUSSIA — Сервер №85 | IZHEVSK</option><option>BLACK RUSSIA — Сервер №86 | SURGUT</option><option>BLACK RUSSIA — Сервер №87 | PODOLSK</option><option>BLACK RUSSIA — Сервер №88 | MAGADAN</option><option>BLACK RUSSIA — Сервер №89 | CHEREPOVETS</option><option>BLACK RUSSIA — Сервер №90 | NORILSK</option><option>BLACK RUSSIA — Сервер №91 | ASTANA</option></select></label>
+     <label class="form-field">Название автомобиля<input id="listingName" required maxlength="70" placeholder="Например, BMW M5 F90"></label>
+     <label class="form-field">Цена, ₽<input id="listingPrice" type="number" required min="1" placeholder="6500000"></label>
+     <label class="form-field">Игровой ник<input id="listingNick" required maxlength="40" placeholder="Ваш ник на сервере"></label>
+     <label class="form-field">Telegram<input id="listingTg" placeholder="@username или https://t.me/username"></label>
+     <label class="form-field">VK<input id="listingVk" placeholder="https://vk.com/username"></label>
+     <label class="form-field">Пробег / состояние<input id="listingCondition" maxlength="100" placeholder="Пробег, тюнинг, состояние (необязательно)"></label>
+     <label class="form-field">Торг<select id="listingBargain"><option value="yes">Готов к торгу</option><option value="no">Без торга</option></select></label>
+     <label class="form-field full">Описание<textarea id="listingDesc" maxlength="600" placeholder="Комплектация, особенности, когда удобно встретиться в игре…"></textarea></label>
+     <div class="form-field full"><span>Скриншот автомобиля</span><div class="upload-area"><input id="listingImage" type="file" accept="image/*"><div class="disclaimer">Добавь скриншот машины. Изображение будет храниться локально в этом прототипе.</div><img id="listingPreview" alt="Предпросмотр" style="display:none;max-width:100%;max-height:190px;margin:10px auto 0;border-radius:8px"></div></div>
+    </div>
+    <p class="disclaimer">Публикуя объявление, ты соглашаешься самостоятельно проверять покупателя и проводить сделку в игре. Не указывай пароли и другие секретные данные.</p>
+    <div class="form-actions"><button type="button" class="btn" id="cancelListing">Отмена</button><button class="primary" type="submit">Опубликовать объявление</button></div>
+   </form>
+  </div>
+  <div class="market-tools"><input id="marketSearch" placeholder="Поиск по объявлениям…"><select id="marketServer"><option value="Все">Все серверы</option><option>BLACK RUSSIA — Сервер №01 | RED</option><option>BLACK RUSSIA — Сервер №02 | GREEN</option><option>BLACK RUSSIA — Сервер №03 | BLUE</option><option>BLACK RUSSIA — Сервер №04 | YELLOW</option><option>BLACK RUSSIA — Сервер №05 | ORANGE</option><option>BLACK RUSSIA — Сервер №06 | PURPLE</option><option>BLACK RUSSIA — Сервер №07 | LIME</option><option>BLACK RUSSIA — Сервер №08 | PINK</option><option>BLACK RUSSIA — Сервер №09 | CHERRY</option><option>BLACK RUSSIA — Сервер №10 | BLACK</option><option>BLACK RUSSIA — Сервер №11 | INDIGO</option><option>BLACK RUSSIA — Сервер №12 | WHITE</option><option>BLACK RUSSIA — Сервер №13 | MAGENTA</option><option>BLACK RUSSIA — Сервер №14 | CRIMSON</option><option>BLACK RUSSIA — Сервер №15 | GOLD</option><option>BLACK RUSSIA — Сервер №16 | AZURE</option><option>BLACK RUSSIA — Сервер №17 | PLATINUM</option><option>BLACK RUSSIA — Сервер №18 | AQUA</option><option>BLACK RUSSIA — Сервер №19 | GRAY</option><option>BLACK RUSSIA — Сервер №20 | ICE</option><option>BLACK RUSSIA — Сервер №21 | CHILLI</option><option>BLACK RUSSIA — Сервер №22 | CHOCO</option><option>BLACK RUSSIA — Сервер №23 | MOSCOW</option><option>BLACK RUSSIA — Сервер №24 | SPB</option><option>BLACK RUSSIA — Сервер №25 | UFA</option><option>BLACK RUSSIA — Сервер №26 | SOCHI</option><option>BLACK RUSSIA — Сервер №27 | KAZAN</option><option>BLACK RUSSIA — Сервер №28 | SAMARA</option><option>BLACK RUSSIA — Сервер №29 | ROSTOV</option><option>BLACK RUSSIA — Сервер №30 | ANAPA</option><option>BLACK RUSSIA — Сервер №31 | EKB</option><option>BLACK RUSSIA — Сервер №32 | KRASNODAR</option><option>BLACK RUSSIA — Сервер №33 | ARZAMAS</option><option>BLACK RUSSIA — Сервер №34 | NOVOSIB</option><option>BLACK RUSSIA — Сервер №35 | GROZNY</option><option>BLACK RUSSIA — Сервер №36 | SARATOV</option><option>BLACK RUSSIA — Сервер №37 | OMSK</option><option>BLACK RUSSIA — Сервер №38 | IRKUTSK</option><option>BLACK RUSSIA — Сервер №39 | VOLGOGRAD</option><option>BLACK RUSSIA — Сервер №40 | VORONEZH</option><option>BLACK RUSSIA — Сервер №41 | BELGOROD</option><option>BLACK RUSSIA — Сервер №42 | MAKHACHKALA</option><option>BLACK RUSSIA — Сервер №43 | VLADIKAVKAZ</option><option>BLACK RUSSIA — Сервер №44 | VLADIVOSTOK</option><option>BLACK RUSSIA — Сервер №45 | KALININGRAD</option><option>BLACK RUSSIA — Сервер №46 | CHELYABINSK</option><option>BLACK RUSSIA — Сервер №47 | KRASNOYARSK</option><option>BLACK RUSSIA — Сервер №48 | CHEBOKSARY</option><option>BLACK RUSSIA — Сервер №49 | KHABAROVSK</option><option>BLACK RUSSIA — Сервер №50 | PERM</option><option>BLACK RUSSIA — Сервер №51 | TULA</option><option>BLACK RUSSIA — Сервер №52 | RYAZAN</option><option>BLACK RUSSIA — Сервер №53 | MURMANSK</option><option>BLACK RUSSIA — Сервер №54 | PENZA</option><option>BLACK RUSSIA — Сервер №55 | KURSK</option><option>BLACK RUSSIA — Сервер №56 | ARKHANGELSK</option><option>BLACK RUSSIA — Сервер №57 | ORENBURG</option><option>BLACK RUSSIA — Сервер №58 | KIROV</option><option>BLACK RUSSIA — Сервер №59 | KEMEROVO</option><option>BLACK RUSSIA — Сервер №60 | TYUMEN</option><option>BLACK RUSSIA — Сервер №61 | TOLYATTI</option><option>BLACK RUSSIA — Сервер №62 | IVANOVO</option><option>BLACK RUSSIA — Сервер №63 | STAVROPOL</option><option>BLACK RUSSIA — Сервер №64 | SMOLENSK</option><option>BLACK RUSSIA — Сервер №65 | PSKOV</option><option>BLACK RUSSIA — Сервер №66 | BRYANSK</option><option>BLACK RUSSIA — Сервер №67 | OREL</option><option>BLACK RUSSIA — Сервер №68 | YAROSLAVL</option><option>BLACK RUSSIA — Сервер №69 | BARNAUL</option><option>BLACK RUSSIA — Сервер №70 | LIPETSK</option><option>BLACK RUSSIA — Сервер №71 | ULYANOVSK</option><option>BLACK RUSSIA — Сервер №72 | YAKUTSK</option><option>BLACK RUSSIA — Сервер №73 | TAMBOV</option><option>BLACK RUSSIA — Сервер №74 | BRATSK</option><option>BLACK RUSSIA — Сервер №75 | ASTRAKHAN</option><option>BLACK RUSSIA — Сервер №76 | CHITA</option><option>BLACK RUSSIA — Сервер №77 | KOSTROMA</option><option>BLACK RUSSIA — Сервер №78 | VLADIMIR</option><option>BLACK RUSSIA — Сервер №79 | KALUGA</option><option>BLACK RUSSIA — Сервер №80 | NOVGOROD</option><option>BLACK RUSSIA — Сервер №81 | TAGANROG</option><option>BLACK RUSSIA — Сервер №82 | VOLOGDA</option><option>BLACK RUSSIA — Сервер №83 | TVER</option><option>BLACK RUSSIA — Сервер №84 | TOMSK</option><option>BLACK RUSSIA — Сервер №85 | IZHEVSK</option><option>BLACK RUSSIA — Сервер №86 | SURGUT</option><option>BLACK RUSSIA — Сервер №87 | PODOLSK</option><option>BLACK RUSSIA — Сервер №88 | MAGADAN</option><option>BLACK RUSSIA — Сервер №89 | CHEREPOVETS</option><option>BLACK RUSSIA — Сервер №90 | NORILSK</option><option>BLACK RUSSIA — Сервер №91 | ASTANA</option></select><select id="marketSort"><option value="new">Сначала новые</option><option value="cheap">Сначала дешевле</option><option value="expensive">Сначала дороже</option></select></div>
+  <div class="listing-grid" id="listingGrid"></div>
+  <p class="disclaimer" style="margin-top:12px">Демо-режим: объявления сохраняются в этом браузере. Для публикации объявлений всем игрокам и хранения на сервере потребуется backend, база данных и хранилище изображений.</p>
+ </section>
 
-    <!-- Основной контент -->
-    <main class="max-w-4xl mx-auto px-4 py-12">
-        
-        <!-- Заголовок секции -->
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-extrabold mb-3 tracking-tight">Калькулятор Сделки</h1>
-            <p class="text-gray-400 text-sm max-w-md mx-auto">Введи данные авто или скина, чтобы мгновенно узнать чистую прибыль и ликвидность товара перед покупкой.</p>
-        </div>
+</main>
+<aside class="rightcol">
+ <section class="box" id="analytics"><h3>▤ Экономика сервера</h3><select id="serverSide" style="width:100%"><option>BLACK RUSSIA — Сервер №01 | RED</option><option>BLACK RUSSIA — Сервер №02 | GREEN</option><option>BLACK RUSSIA — Сервер №03 | BLUE</option><option>BLACK RUSSIA — Сервер №04 | YELLOW</option><option>BLACK RUSSIA — Сервер №05 | ORANGE</option><option>BLACK RUSSIA — Сервер №06 | PURPLE</option><option>BLACK RUSSIA — Сервер №07 | LIME</option><option>BLACK RUSSIA — Сервер №08 | PINK</option><option>BLACK RUSSIA — Сервер №09 | CHERRY</option><option>BLACK RUSSIA — Сервер №10 | BLACK</option><option>BLACK RUSSIA — Сервер №11 | INDIGO</option><option>BLACK RUSSIA — Сервер №12 | WHITE</option><option>BLACK RUSSIA — Сервер №13 | MAGENTA</option><option>BLACK RUSSIA — Сервер №14 | CRIMSON</option><option>BLACK RUSSIA — Сервер №15 | GOLD</option><option>BLACK RUSSIA — Сервер №16 | AZURE</option><option>BLACK RUSSIA — Сервер №17 | PLATINUM</option><option>BLACK RUSSIA — Сервер №18 | AQUA</option><option>BLACK RUSSIA — Сервер №19 | GRAY</option><option>BLACK RUSSIA — Сервер №20 | ICE</option><option>BLACK RUSSIA — Сервер №21 | CHILLI</option><option>BLACK RUSSIA — Сервер №22 | CHOCO</option><option>BLACK RUSSIA — Сервер №23 | MOSCOW</option><option>BLACK RUSSIA — Сервер №24 | SPB</option><option>BLACK RUSSIA — Сервер №25 | UFA</option><option>BLACK RUSSIA — Сервер №26 | SOCHI</option><option>BLACK RUSSIA — Сервер №27 | KAZAN</option><option>BLACK RUSSIA — Сервер №28 | SAMARA</option><option>BLACK RUSSIA — Сервер №29 | ROSTOV</option><option>BLACK RUSSIA — Сервер №30 | ANAPA</option><option>BLACK RUSSIA — Сервер №31 | EKB</option><option>BLACK RUSSIA — Сервер №32 | KRASNODAR</option><option>BLACK RUSSIA — Сервер №33 | ARZAMAS</option><option>BLACK RUSSIA — Сервер №34 | NOVOSIB</option><option>BLACK RUSSIA — Сервер №35 | GROZNY</option><option>BLACK RUSSIA — Сервер №36 | SARATOV</option><option>BLACK RUSSIA — Сервер №37 | OMSK</option><option>BLACK RUSSIA — Сервер №38 | IRKUTSK</option><option>BLACK RUSSIA — Сервер №39 | VOLGOGRAD</option><option>BLACK RUSSIA — Сервер №40 | VORONEZH</option><option>BLACK RUSSIA — Сервер №41 | BELGOROD</option><option>BLACK RUSSIA — Сервер №42 | MAKHACHKALA</option><option>BLACK RUSSIA — Сервер №43 | VLADIKAVKAZ</option><option>BLACK RUSSIA — Сервер №44 | VLADIVOSTOK</option><option>BLACK RUSSIA — Сервер №45 | KALININGRAD</option><option>BLACK RUSSIA — Сервер №46 | CHELYABINSK</option><option>BLACK RUSSIA — Сервер №47 | KRASNOYARSK</option><option>BLACK RUSSIA — Сервер №48 | CHEBOKSARY</option><option>BLACK RUSSIA — Сервер №49 | KHABAROVSK</option><option>BLACK RUSSIA — Сервер №50 | PERM</option><option>BLACK RUSSIA — Сервер №51 | TULA</option><option>BLACK RUSSIA — Сервер №52 | RYAZAN</option><option>BLACK RUSSIA — Сервер №53 | MURMANSK</option><option>BLACK RUSSIA — Сервер №54 | PENZA</option><option>BLACK RUSSIA — Сервер №55 | KURSK</option><option>BLACK RUSSIA — Сервер №56 | ARKHANGELSK</option><option>BLACK RUSSIA — Сервер №57 | ORENBURG</option><option>BLACK RUSSIA — Сервер №58 | KIROV</option><option>BLACK RUSSIA — Сервер №59 | KEMEROVO</option><option>BLACK RUSSIA — Сервер №60 | TYUMEN</option><option>BLACK RUSSIA — Сервер №61 | TOLYATTI</option><option>BLACK RUSSIA — Сервер №62 | IVANOVO</option><option>BLACK RUSSIA — Сервер №63 | STAVROPOL</option><option>BLACK RUSSIA — Сервер №64 | SMOLENSK</option><option>BLACK RUSSIA — Сервер №65 | PSKOV</option><option>BLACK RUSSIA — Сервер №66 | BRYANSK</option><option>BLACK RUSSIA — Сервер №67 | OREL</option><option>BLACK RUSSIA — Сервер №68 | YAROSLAVL</option><option>BLACK RUSSIA — Сервер №69 | BARNAUL</option><option>BLACK RUSSIA — Сервер №70 | LIPETSK</option><option>BLACK RUSSIA — Сервер №71 | ULYANOVSK</option><option>BLACK RUSSIA — Сервер №72 | YAKUTSK</option><option>BLACK RUSSIA — Сервер №73 | TAMBOV</option><option>BLACK RUSSIA — Сервер №74 | BRATSK</option><option>BLACK RUSSIA — Сервер №75 | ASTRAKHAN</option><option>BLACK RUSSIA — Сервер №76 | CHITA</option><option>BLACK RUSSIA — Сервер №77 | KOSTROMA</option><option>BLACK RUSSIA — Сервер №78 | VLADIMIR</option><option>BLACK RUSSIA — Сервер №79 | KALUGA</option><option>BLACK RUSSIA — Сервер №80 | NOVGOROD</option><option>BLACK RUSSIA — Сервер №81 | TAGANROG</option><option>BLACK RUSSIA — Сервер №82 | VOLOGDA</option><option>BLACK RUSSIA — Сервер №83 | TVER</option><option>BLACK RUSSIA — Сервер №84 | TOMSK</option><option>BLACK RUSSIA — Сервер №85 | IZHEVSK</option><option>BLACK RUSSIA — Сервер №86 | SURGUT</option><option>BLACK RUSSIA — Сервер №87 | PODOLSK</option><option>BLACK RUSSIA — Сервер №88 | MAGADAN</option><option>BLACK RUSSIA — Сервер №89 | CHEREPOVETS</option><option>BLACK RUSSIA — Сервер №90 | NORILSK</option><option>BLACK RUSSIA — Сервер №91 | ASTANA</option></select><div class="server-state"><span class="muted">Спрос на рынке</span><strong class="green">Активный</strong></div><div class="spark"></div><div class="calc-line"><span class="muted">Онлайн сервера</span><strong id="online">2 834</strong></div><div class="calc-line"><span class="muted">Комиссия рынка</span><strong>5%</strong></div><div class="calc-line"><span class="muted">Данные</span><strong class="pill">Демо-режим</strong></div><p class="notice">Цены ниже — демонстрационные примеры, не реальные котировки сервера.</p></section>
+ <section class="box" id="compare"><h3>📈 Сравнение цен</h3><p class="notice">Пример потенциальной разницы между госценой и рынком.</p><div id="compareRows"></div><button class="btn" style="width:100%;margin-top:10px" onclick="document.querySelector('#catalog').scrollIntoView({behavior:'smooth'})">Открыть каталог →</button></section>
+ <section class="box" id="calc"><h3>🧮 Калькулятор перекупа</h3><p class="notice">Введи цены покупки и продажи — комиссия считается автоматически.</p><div class="calc-line"><label for="buy">Покупка, ₽</label><input id="buy" type="number" min="0" value="6800000"></div><div class="calc-line"><label for="sell">Продажа, ₽</label><input id="sell" type="number" min="0" value="9500000"></div><div class="calc-line"><label for="fee">Комиссия, %</label><input id="fee" type="number" min="0" max="100" value="5"></div><div class="calc-line"><span class="muted">Комиссия</span><strong id="feeAmount">475 000 ₽</strong></div><div class="profit">Чистая прибыль <span style="float:right" id="profit">2 225 000 ₽</span></div><div class="calc-line"><span class="muted">Рентабельность</span><strong id="roi" class="green">32,7%</strong></div><button class="btn" style="width:100%;margin-top:10px" id="calcBtn">Рассчитать</button></section>
+ <section class="box"><h3>🔄 Обновление цен</h3><p class="notice">Для актуальных значений нужен подтверждённый источник цен BLACK RUSSIA по выбранному серверу.</p><span class="green">● Прототип работает локально</span></section>
+</aside>
+</div>
+<div class="footer">BLACK RUSSIA MARKET · Прототип каталога перекупа · Демонстрационные цены не являются официальными.</div>
+<div class="modal" id="modal"><div class="modalbox"><button class="close" onclick="closeInfo()">×</button><h2>Как пользоваться BLACK RUSSIA MARKET</h2><p>1. Выбери игровой сервер — цены и экономика в будущем будут храниться отдельно для каждого сервера.</p><p>2. Найди товар, сравни госцену с рыночным ориентиром и оцени потенциал.</p><p>3. В калькуляторе укажи цену покупки и предполагаемую продажу. Комиссия вычитается автоматически.</p><p class="notice">Сейчас это демонстрационный прототип. Список серверов добавлен; цены и онлайн пока не подключены к актуальному источнику данных.</p><button class="btn" onclick="closeInfo()">Понятно</button></div></div>
+<script>
+const baseItems=[
+{id:1,name:'Mercedes-Benz G65 AMG',cat:'Авто',type:'Внедорожник',price:6800000,market:9500000,high:11000000,emoji:'🚙',img:'https://images.unsplash.com/photo-1520031441872-265e4ff70366?auto=format&fit=crop&w=700&q=75'},
+{id:2,name:'BMW M5 F90',cat:'Авто',type:'Седан',price:4200000,market:6800000,high:8500000,emoji:'🚘',img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=700&q=75'},
+{id:3,name:'Audi RS7',cat:'Авто',type:'Спорткар',price:5600000,market:7900000,high:10500000,emoji:'🏎️',img:'https://images.unsplash.com/photo-1603584173870-7f23facedec7?auto=format&fit=crop&w=700&q=75'},
+{id:4,name:'Porsche 911 Turbo S',cat:'Авто',type:'Спорткар',price:12000000,market:16500000,high:20000000,emoji:'🏎️',img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=75'},
+{id:5,name:'Lada Vesta Sport',cat:'Авто',type:'Седан',price:850000,market:1200000,high:1600000,emoji:'🚗',img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=700&q=75'},
+{id:6,name:'Toyota Land Cruiser 200',cat:'Авто',type:'Внедорожник',price:5500000,market:7200000,high:8800000,emoji:'🚙',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=700&q=75'},
+{id:7,name:'Nissan GT-R R35',cat:'Авто',type:'Спорткар',price:13000000,market:17000000,high:19500000,emoji:'🏎️',img:'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=700&q=75'},
+{id:8,name:'Lamborghini Huracán',cat:'Авто',type:'Спорткар',price:21000000,market:26000000,high:31000000,emoji:'🏁',img:'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=700&q=75'},
+{id:9,name:'Тактический образ',cat:'Скины',type:'Одежда',price:250000,market:410000,high:550000,emoji:'🧥'},
+{id:10,name:'Редкий уличный сет',cat:'Скины',type:'Одежда',price:180000,market:360000,high:500000,emoji:'👕'},
+{id:11,name:'Золотая цепь',cat:'Аксессуары',type:'Украшение',price:700000,market:1250000,high:1600000,emoji:'⛓️'},
+{id:12,name:'Коллекционные часы',cat:'Аксессуары',type:'Редкий предмет',price:1200000,market:1850000,high:2400000,emoji:'⌚'},
+{id:13,name:'Лимитированные очки',cat:'Аксессуары',type:'Аксессуар',price:300000,market:620000,high:800000,emoji:'🕶️'},
+{id:14,name:'Премиум кроссовки',cat:'Скины',type:'Обувь',price:450000,market:710000,high:950000,emoji:'👟'}
+];
+let category='Авто',favorites=new Set(),server='BLACK RUSSIA — Сервер №01 | RED',showFavorites=false;
+const $=id=>document.getElementById(id), money=n=>Math.round(n).toLocaleString('ru-RU')+' ₽';
+function factor(){return 1 /* коэффициенты не подтверждены: цены в каталоге демонстрационные */}
+function items(){return baseItems.map(x=>({...x,price:Math.round(x.price*factor()),market:Math.round(x.market*factor()),high:Math.round(x.high*factor())}))}
+function profitOf(x){return (x.market-x.price*.0)*1-x.price-(x.market*.05)}
+function setCategory(cat){category=cat;showFavorites=false;$('categoryFilter').value=cat;document.querySelectorAll('[data-cat]').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));document.querySelectorAll('.tile').forEach(b=>b.classList.toggle('selected',b.dataset.cat===cat));render()}
+function render(){let list=items(),q=$('search').value.trim().toLowerCase(),cat=$('categoryFilter').value; if(cat!=='Все')list=list.filter(x=>x.cat===cat);if(showFavorites)list=list.filter(x=>favorites.has(x.id));if(q)list=list.filter(x=>(x.name+' '+x.cat+' '+x.type).toLowerCase().includes(q));if($('dealFilter').value==='good')list=list.filter(x=>(x.market*(1-.05)-x.price)/x.price>=.2);let sort=$('sort').value;if(sort==='profit')list.sort((a,b)=>((b.market*.95-b.price)/b.price)-((a.market*.95-a.price)/a.price));if(sort==='priceAsc')list.sort((a,b)=>a.price-b.price);if(sort==='priceDesc')list.sort((a,b)=>b.price-a.price);if(sort==='name')list.sort((a,b)=>a.name.localeCompare(b.name,'ru'));$('catalogTitle').textContent=showFavorites?'Избранное':cat==='Все'?'Весь каталог':cat==='Авто'?'Автомобили':cat;$('resultCount').textContent=list.length+' позиций';$('cards').innerHTML=list.length?list.map(x=>{let p=(x.market*.95-x.price),pct=x.price?Math.round(p/x.price*100):0;return `<article class="card"><div class="car-img">${x.img?`<img src="${x.img}" alt="${x.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=placeholder>${x.emoji}</div>'">`:`<div class="placeholder">${x.emoji}</div>`}</div><div class="cardbody"><h3>${x.name}</h3><span class="tag">${x.type}</span><div class="price-row"><span>Гос. цена</span><strong>${money(x.price)}</strong></div><div class="price-row"><span>Рынок, ориентир</span><strong>${money(x.market)}</strong></div><div class="price-row"><span>Потенциал после 5% комиссии</span><strong class="gain">${pct>0?'+':''}${pct}%</strong></div><div class="card-actions"><button class="fav ${favorites.has(x.id)?'on':''}" title="В избранное" onclick="toggleFav(${x.id})">${favorites.has(x.id)?'★':'☆'}</button><button class="btn smallbtn" onclick="useItem(${x.id})">В калькулятор →</button></div></div></article>`}).join(''):'<div class="empty">Ничего не найдено. Попробуй изменить поиск или фильтры.</div>';let comp=items().sort((a,b)=>((b.market*.95-b.price)/b.price)-((a.market*.95-a.price)/a.price)).slice(0,4);$('compareRows').innerHTML=comp.map(x=>`<div class="minirow">${x.img?`<img src="${x.img}" alt="">`:`<div style="font-size:25px">${x.emoji}</div>`}<div><strong>${x.name}</strong><span class="muted">Гос: ${money(x.price)}</span><br><span class="muted">Рынок: ${money(x.market)}</span></div><b class="gain">+${Math.round((x.market*.95-x.price)/x.price*100)}%</b></div>`).join('');}
+function toggleFav(id){favorites.has(id)?favorites.delete(id):favorites.add(id);render()}
+function useItem(id){let x=items().find(i=>i.id===id);$('buy').value=x.price;$('sell').value=x.market;calc();$('calc').scrollIntoView({behavior:'smooth',block:'center'})}
+function calc(){let buy=Math.max(0,+$('buy').value||0),sell=Math.max(0,+$('sell').value||0),fee=Math.min(100,Math.max(0,+$('fee').value||0)),comm=sell*fee/100,p=sell-comm-buy;$('feeAmount').textContent=money(comm);$('profit').textContent=(p<0?'−':'')+money(Math.abs(p));$('roi').textContent=(buy?p/buy*100:0).toLocaleString('ru-RU',{maximumFractionDigits:1})+'%';$('profit').style.color=p>=0?'var(--green)':'#ff6b7c'}
+function showInfo(){$('modal').classList.add('open')}function closeInfo(){$('modal').classList.remove('open')}
+document.querySelectorAll('[data-cat]').forEach(b=>b.addEventListener('click',()=>setCategory(b.dataset.cat)));document.querySelectorAll('[data-short]').forEach(b=>b.addEventListener('click',()=>setCategory(b.dataset.short)));$('search').addEventListener('input',render);['categoryFilter','sort','dealFilter'].forEach(id=>$(id).addEventListener('change',()=>{category=$('categoryFilter').value;showFavorites=false;render()}));$('reset').addEventListener('click',()=>{$('search').value='';$('categoryFilter').value='Все';$('sort').value='default';$('dealFilter').value='all';showFavorites=false;setCategory('Все')});$('serverTop').addEventListener('change',e=>{server=e.target.value;$('serverSide').value=server;render()});$('serverSide').addEventListener('change',e=>{server=e.target.value;$('serverTop').value=server;$('online').textContent='Нет данных';render()});$('sideFav').addEventListener('click',()=>{showFavorites=true;$('catalogTitle').textContent='Избранное';render()});$('favNav').addEventListener('click',e=>{e.preventDefault();showFavorites=true;render();$('catalog').scrollIntoView({behavior:'smooth'})});['buy','sell','fee'].forEach(id=>$(id).addEventListener('input',calc));$('calcBtn').addEventListener('click',calc);$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeInfo()});
+const LISTING_KEY='automarket_user_listings_v1';
+let userListings=[];
+try{userListings=JSON.parse(localStorage.getItem(LISTING_KEY)||'[]')}catch(e){userListings=[]}
+let draftImage='';
+function saveListings(){try{localStorage.setItem(LISTING_KEY,JSON.stringify(userListings))}catch(e){alert('Не удалось сохранить объявление: возможно, изображение слишком большое. Попробуй скриншот меньшего размера.')}} 
+function safeText(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function contactHref(kind,value){let v=(value||'').trim();if(!v)return '';if(kind==='tg'){if(/^https?:\/\//i.test(v))return v;return 'https://t.me/'+v.replace(/^@/,'')}if(/^https?:\/\//i.test(v))return v;return 'https://vk.com/'+v.replace(/^@/,'')}
+function renderListings(){
+ let q=($('marketSearch').value||'').toLowerCase().trim(),srv=$('marketServer').value,sort=$('marketSort').value;
+ let all=[...userListings];
+ if(q)all=all.filter(x=>(x.name+' '+x.nick+' '+x.desc+' '+x.server).toLowerCase().includes(q));
+ if(srv!=='Все')all=all.filter(x=>x.server===srv);
+ if(sort==='cheap')all.sort((a,b)=>a.price-b.price);
+ if(sort==='expensive')all.sort((a,b)=>b.price-a.price);
+ if(sort==='new')all.sort((a,b)=>b.created-a.created);
+ const demo=[
+ {id:'demo1',name:'BMW M5 F90',price:6800000,nick:'Player_Demo',server:'BLACK RUSSIA — Сервер №01 | RED',condition:'Отличное состояние · тюнинг',bargain:'yes',desc:'Демо-объявление для BLACK RUSSIA. Пример цены и описания; не реальная котировка.',img:'',tg:'',vk:'',demo:true},
+ {id:'demo2',name:'Mercedes-Benz G65 AMG',price:9500000,nick:'AutoSeller',server:'BLACK RUSSIA — Сервер №36 | SARATOV',condition:'Ухоженный автомобиль',bargain:'yes',desc:'Демо-объявление BLACK RUSSIA. Контакты не подключены.',img:'',tg:'',vk:'',demo:true},
+ {id:'demo3',name:'Porsche 911 Turbo S',price:16500000,nick:'FastDeal',server:'BLACK RUSSIA — Сервер №37 | OMSK',condition:'Спорткар',bargain:'no',desc:'Демо-карточка BLACK RUSSIA — нажми «Подать объявление», чтобы создать свою.',img:'',tg:'',vk:'',demo:true}
+ ];
+ // Demo examples are shown only when there are no user listings matching the current filters.
+ if(userListings.length===0 && !q && srv==='Все')all=demo;
+ $('listingGrid').innerHTML=all.length?all.map(x=>{
+  let tg=contactHref('tg',x.tg),vk=contactHref('vk',x.vk);
+  let photo=x.img?`<img src="${x.img}" alt="${safeText(x.name)}">`:`<div class="sample">🚘</div>`;
+  return `<article class="listing-card"><div class="listing-photo">${photo}<span class="server-label">${safeText(x.server)}</span></div><div class="listing-body"><h3>${safeText(x.name)}</h3><div class="listing-meta"><span>👤 ${safeText(x.nick)}</span><span>${x.bargain==='yes'?'🤝 Торг уместен':'Цена фиксированная'}</span></div><div class="listing-price">${money(x.price)}</div>${x.condition?`<div class="listing-meta">${safeText(x.condition)}</div>`:''}<div class="listing-desc">${safeText(x.desc||'Продавец не добавил описание.')}</div><div class="listing-contact">${tg?`<a href="${safeText(tg)}" target="_blank" rel="noopener">Написать в Telegram ↗</a>`:''}${vk?`<a href="${safeText(vk)}" target="_blank" rel="noopener">Написать в VK ↗</a>`:''}${!tg&&!vk?`<span class="disclaimer">${x.demo?'Демо-карточка · контакты не заданы':'Контакт не указан'}</span>`:''}</div>${!x.demo?`<div style="margin-top:9px;text-align:right"><button class="btn smallbtn" onclick="deleteListing('${safeText(x.id)}')">Удалить моё объявление</button></div>`:''}</div></article>`
+ }).join(''):'<div class="empty">Объявлений по этому фильтру пока нет. Будь первым — подай объявление!</div>';
+}
+function deleteListing(id){if(confirm('Удалить это объявление из текущего браузера?')){userListings=userListings.filter(x=>x.id!==id);saveListings();renderListings()}}
+$('openListingForm').addEventListener('click',()=>{$('listingFormBox').style.display='block';$('listingFormBox').scrollIntoView({behavior:'smooth',block:'start'})});
+$('cancelListing').addEventListener('click',()=>{$('listingFormBox').style.display='none';$('listingForm').reset();draftImage='';$('listingPreview').style.display='none'});
+$('listingImage').addEventListener('change',e=>{
+ const file=e.target.files&&e.target.files[0];if(!file)return;
+ if(!file.type.startsWith('image/')){alert('Выбери файл изображения.');e.target.value='';return}
+ if(file.size>2*1024*1024){alert('Для демо-версии выбери изображение до 2 МБ.');e.target.value='';return}
+ const reader=new FileReader();reader.onload=()=>{draftImage=reader.result;$('listingPreview').src=draftImage;$('listingPreview').style.display='block'};reader.readAsDataURL(file);
+});
+$('listingForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const tg=$('listingTg').value.trim(),vk=$('listingVk').value.trim();
+ if(!tg&&!vk){alert('Укажи Telegram или VK, чтобы покупатель мог связаться с тобой.');return}
+ if(tg&&!contactHref('tg',tg)){alert('Проверь ссылку Telegram.');return}
+ const entry={id:'u'+Date.now(),created:Date.now(),server:$('listingServer').value,name:$('listingName').value.trim(),price:Math.round(+$('listingPrice').value),nick:$('listingNick').value.trim(),tg,vk,condition:$('listingCondition').value.trim(),bargain:$('listingBargain').value,desc:$('listingDesc').value.trim(),img:draftImage};
+ userListings.unshift(entry);saveListings();$('listingForm').reset();draftImage='';$('listingPreview').style.display='none';$('listingFormBox').style.display='none';$('marketServer').value='Все';$('marketSearch').value='';renderListings();$('listingGrid').scrollIntoView({behavior:'smooth',block:'start'});
+});
+['marketSearch','marketServer','marketSort'].forEach(id=>$(id).addEventListener(id==='marketSearch'?'input':'change',renderListings));
 
-        <!-- Сетка калькулятора -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            
-            <!-- Левая колонка: Форма ввода (Интерфейс игрока) -->
-            <div class="bg-black/40 border border-purple-900/30 rounded-2xl p-6 backdrop-blur-sm shadow-xl">
-                <h2 class="text-lg font-bold mb-4 text-purple-300 flex items-center gap-2">
-                    <span>📝</span> Данные сделки
-                </h2>
-                
-                <div class="space-y-4">
-                    <!-- Выбор категории -->
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Категория товара</label>
-                        <select id="itemCategory" class="w-full bg-purple-950/30 border border-purple-900/60 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition">
-                            <option value="auto">🚗 Автомобиль</option>
-                            <option value="skin">👕 Скин / Одежда</option>
-                            <option value="acc">🎒 Аксессуар</option>
-                        </select>
-                    </div>
-
-                    <!-- Название предмета (Симуляция поиска) -->
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Название предмета</label>
-                        <select id="itemName" class="w-full bg-purple-950/30 border border-purple-900/60 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition" onchange="updateMarketPrices()">
-                            <!-- Машины -->
-                            <option value="subaru" data-gos="1500000" data-market="1250000" data-liq="8">Subaru Impreza WRX STI</option>
-                            <option value="skyline" data-gos="680000" data-market="600000" data-liq="9">Nissan Skyline R34</option>
-                            <option value="m5f90" data-gos="9500000" data-market="9000000" data-liq="7">BMW M5 F90</option>
-                        </select>
-                    </div>
-
-                    <!-- Цена покупки -->
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Тебе предлагают купить за (руб):</label>
-                        <input id="buyPrice" type="number" value="500000" class="w-full bg-purple-950/30 border border-purple-900/60 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition font-mono text-lg" placeholder="Например: 550000">
-                    </div>
-
-                    <!-- Кнопка рассчитать -->
-                    <button onclick="calculateDeal()" class="w-full br-accent text-white font-bold py-3.5 px-4 rounded-xl shadow-lg hover:opacity-90 active:scale-95 transition duration-200 mt-2 uppercase tracking-wider text-sm shadow-pink-500/10">
-                        Проверить выгоду
-                    </button>
-                </div>
-            </div>
-
-            <!-- Правая колонка: Вердикт и Аналитика (Результаты) -->
-            <div class="space-y-6">
-                
-                <!-- Главный Вердикт -->
-                <div id="verdictBox" class="bg-neutral-900/60 border border-neutral-800 rounded-2xl p-6 text-center shadow-xl transition-all duration-300">
-                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-widest block mb-1">Вердикт системы</span>
-                    <div id="verdictText" class="text-2xl font-black uppercase text-gray-400">Ожидание данных...</div>
-                    <div id="profitText" class="text-sm text-gray-400 mt-1 font-mono">Введите параметры для расчета</div>
-                </div>
-
-                <!-- Карточка рыночной справки -->
-                <div class="bg-black/20 border border-purple-900/20 rounded-2xl p-6 space-y-4">
-                    <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Рыночная справка (Средняя по б/у)</h3>
-                    
-                    <div class="flex justify-between items-center border-b border-purple-900/20 pb-2">
-                        <span class="text-gray-400 text-sm">Госс. цена:</span>
-                        <span id="infoGos" class="font-mono text-sm font-semibold text-gray-200">0 руб.</span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center border-b border-purple-900/20 pb-2">
-                        <span class="text-gray-400 text-sm">Средний рынок:</span>
-                        <span id="infoMarket" class="font-mono text-sm font-semibold text-purple-300">0 руб.</span>
-                    </div>
-
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400 text-sm">Ликвидность (спрос):</span>
-                        <div class="flex items-center gap-2">
-                            <span id="infoLiq" class="font-bold text-sm text-gray-200">0/10</span>
-                            <div class="w-16 bg-purple-950 rounded-full h-1.5 overflow-hidden">
-                                <div id="liqBar" class="bg-pink-500 h-1.5 rounded-full" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Логика калькулятора на JavaScript -->
-    <script>
-        // Данные для переключения категорий
-        const itemsData = {
-            auto: [
-                { id: 'subaru', name: 'Subaru Impreza WRX STI', gos: 1500000, market: 1250000, liq: 8 },
-                { id: 'skyline', name: 'Nissan Skyline R34', gos: 680000, market: 600000, liq: 9 },
-                { id: 'm5f90', name: 'BMW M5 F90', gos: 9500000, market: 9000000, liq: 7 }
-            ],
-            skin: [
-                { id: 'a4', name: 'Скин: Влад А4', gos: 0, market: 4500000, liq: 9 },
-                { id: 'litvin', name: 'Скин: Литвин', gos: 0, market: 3800000, liq: 8 },
-                { id: 'clown', name: 'Скин: Клоун', gos: 250000, market: 120000, liq: 3 }
-            ],
-            acc: [
-                { id: 'wings', name: 'Крылья демона', gos: 0, market: 2500000, liq: 7 },
-                { id: 'mask', name: 'Маска Скорпиона', gos: 100000, market: 45000, liq: 4 }
-            ]
-        };
-
-        const categorySelect = document.getElementById('itemCategory');
-        const nameSelect = document.getElementById('itemName');
-
-        // Динамическое обновление списка товаров при смене категории
-        categorySelect.addEventListener('change', () => {
-            const cat = categorySelect.value;
-            nameSelect.innerHTML = '';
-            itemsData[cat].forEach(item => {
-                const opt = document.createElement('option');
-                opt.value = item.id;
-                opt.textContent = item.name;
-                opt.setAttribute('data-gos', item.gos);
-                opt.setAttribute('data-market', item.market);
-                opt.setAttribute('data-liq', item.liq);
-                nameSelect.appendChild(opt);
-            });
-            updateMarketPrices();
-        });
-
-        function updateMarketPrices() {
-            const selectedOpt = nameSelect.options[nameSelect.selectedIndex];
-            if (!selectedOpt) return;
-
-            const gos = parseInt(selectedOpt.getAttribute('data-gos'));
-            const market = parseInt(selectedOpt.getAttribute('data-market'));
-            const liq = parseInt(selectedOpt.getAttribute('data-liq'));
-
-            document.getElementById('infoGos').textContent = gos === 0 ? 'Донат / Эксклюзив' : gos.toLocaleString() + ' руб.';
-            document.getElementById('infoMarket').textContent = market.toLocaleString() + ' руб.';
-            document.getElementById('infoLiq').textContent = liq + '/10';
-            document.getElementById('liqBar').style.width = (liq * 10) + '%';
-        }
-
-        // Логика самого расчета выгоды
-        function calculateDeal() {
-            const selectedOpt = nameSelect.options[nameSelect.selectedIndex];
-            const buyPrice = parseInt(document.getElementById('buyPrice').value);
-
-            if(!selectedOpt || isNaN(buyPrice) || buyPrice <= 0) {
-                alert('Введите корректную цену покупки!');
-                return;
-            }
-
-            const marketPrice = parseInt(selectedOpt.getAttribute('data-market'));
-            const profit = marketPrice - buyPrice;
-
-            const verdictBox = document.getElementById('verdictBox');
-            const verdictText = document.getElementById('verdictText');
-            const profitText = document.getElementById('profitText');
-
-            // Очищаем старые стили оформления вердикта
-            verdictBox.className = "bg-neutral-900/60 border rounded-2xl p-6 text-center shadow-xl transition-all duration-300 ";
-
-            if (profit > 100000) {
-                // Жирная выгода (Зеленый)
-                verdictBox.classList.add('border-emerald-500/50', 'bg-emerald-950/20');
-                verdictText.textContent = "🔥 Идеальная сделка!";
-                verdictText.className = "text-2xl font-black uppercase text-emerald-400";
-                profitText.textContent = `Чистый навар: +${profit.toLocaleString()} руб.`;
-                profitText.className = "text-sm text-emerald-300 font-mono mt-1";
-            } else if (profit >= 0 && profit <= 100000) {
-                // Около нуля / Небольшой плюс (Желтый)
-                verdictBox.classList.add('border-amber-500/50', 'bg-amber-950/20');
-                verdictText.textContent = "⚖️ Сомнительно";
-                verdictText.className = "text-2xl font-black uppercase text-amber-400";
-                profitText.textContent = `Прибыль минимальна: +${profit.toLocaleString()} руб. Долго будешь отбивать комиссию.`;
-                profitText.className = "text-sm text-amber-300 font-mono mt-1";
-            } else {
-                // Уход в минус (Красный)
-                verdictBox.classList.add('border-rose-500/50', 'bg-rose-950/20');
-                verdictText.textContent = "❌ Оверпрайс / Минус";
-                verdictText.className = "text-2xl font-black uppercase text-rose-400";
-                profitText.textContent = `Ты уходишь в минус на: ${profit.toLocaleString()} руб.! Не покупай.`;
-                profitText.className = "text-sm text-rose-300 font-mono mt-1";
-            }
-        }
-
-        // Первичная инициализация при открытии
-        updateMarketPrices();
-    </script>
-</body>
-</html>
+render();calc();renderListings();
+</script>
+</body></html>
