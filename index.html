@@ -3,204 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMP STORE — Премиум сборки GTA San Andreas</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Black Market Analytics | Калькулятор Перекупа</title>
+    <!-- Подключаем Tailwind CSS для красивых стилей -->
+    <script src="https://tailwindcss.com"></script>
     <style>
-        /* Стильный интерактивный переключатель версий внутри карточки */
-        .version-switcher {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 4px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* Фирменный градиент в стиле Black Russia */
+        .br-gradient {
+            background: linear-gradient(135deg, #1a0b2e 0%, #11071c 100%);
         }
-        .v-btn {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            padding: 8px 12px;
-            font-size: 11px;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .v-btn.active {
-            background: #fff;
-            color: #000;
-            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+        .br-accent {
+            background: linear-gradient(90deg, #ff0055 0%, #9900ff 100%);
         }
     </style>
 </head>
-<body>
+<body class="br-gradient text-gray-100 min-h-screen font-sans">
 
-    <!-- Шапка сайта -->
-    <header>
-        <div class="container">
-            <div class="logo">SAMP STORE</div>
-            <nav>
-                <a href="#catalog">Каталог</a>
-                <a href="#reviews">Отзывы</a>
+    <!-- Навигация (Шапка сайта) -->
+    <header class="border-b border-purple-900/40 bg-black/40 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl font-black tracking-wider text-transparent bg-clip-text br-accent">BR MARKET</span>
+                <span class="bg-purple-900/60 text-purple-300 text-xs px-2 py-1 rounded border border-purple-500/30 uppercase tracking-widest font-bold">Beta</span>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#" class="text-white border-b-2 border-pink-500 pb-1">Калькулятор</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">База Цен</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">Тренды рынка</a>
             </nav>
+            <div class="text-xs text-gray-400 bg-purple-950/40 px-3 py-1.5 rounded-lg border border-purple-900/50">
+                Сервер: <span class="text-pink-500 font-bold">Crimson</span>
+            </div>
         </div>
     </header>
 
-    <!-- Главный баннер (Hero) -->
-    <section class="hero">
-        <div class="container">
-            <h1>Качественные сборки для <span>комфортной игры</span></h1>
-            <p>Оптимизация игровых файлов. Стабильный FPS, приватные моды и полная защита от крашей.</p>
-            <div class="features">
-                <div class="feature-card">
-                    <h4>0% Стеллеров</h4>
-                    <p>Каждый скрипт проходит глубокую проверку и ручной аудит.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>FPS Оптимизация</h4>
-                    <p>Стабильный прирост кадров на любых слабых ПК.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Поддержка 24/7</h4>
-                    <p>Помогаем с установкой и решением любых ошибок.</p>
-                </div>
-            </div>
+    <!-- Основной контент -->
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        
+        <!-- Заголовок секции -->
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-extrabold mb-3 tracking-tight">Калькулятор Сделки</h1>
+            <p class="text-gray-400 text-sm max-w-md mx-auto">Введи данные авто или скина, чтобы мгновенно узнать чистую прибыль и ликвидность товара перед покупкой.</p>
         </div>
-    </section>
 
-    <!-- Раздел с тарифами -->
-    <section id="catalog" class="container">
-        <h2 class="section-title">Каталог приватных тарифов</h2>
-        <div class="build-grid" style="justify-content: center; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 400px));">
+        <!-- Сетка калькулятора -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             
-            <!-- ТАРИФ GHETTO FPS UP С ВЫБОРОМ ПРИВАТНЫХ СБОРОК -->
-            <div class="build-card">
-                <div class="build-img-wrapper">
-                    <span class="build-badge" id="buildBadge" style="color: #ffffff;">PREMIUM PRIVAT</span>
-                    <img src="https://placeholder.com" class="build-img" alt="Ghetto">
-                </div>
-                <div class="build-content">
-                    <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 15px; color: #fff;">Ghetto FPS Up Edition</h2>
-                    
-                    <!-- КНОПКИ ПЕРЕКЛЮЧЕНИЯ ПЛАТНЫХ СБОРОК -->
-                    <div class="version-switcher">
-                        <button class="v-btn active" onclick="switchBuild('bw')">B&W Classic</button>
-                        <button class="v-btn" onclick="switchBuild('toxic')">Toxic Neon</button>
+            <!-- Левая колонка: Форма ввода (Интерфейс игрока) -->
+            <div class="bg-black/40 border border-purple-900/30 rounded-2xl p-6 backdrop-blur-sm shadow-xl">
+                <h2 class="text-lg font-bold mb-4 text-purple-300 flex items-center gap-2">
+                    <span>📝</span> Данные сделки
+                </h2>
+                
+                <div class="space-y-4">
+                    <!-- Выбор категории -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Категория товара</label>
+                        <select id="itemCategory" class="w-full bg-purple-950/30 border border-purple-900/60 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition">
+                            <option value="auto">🚗 Автомобиль</option>
+                            <option value="skin">👕 Скин / Одежда</option>
+                            <option value="acc">🎒 Аксессуар</option>
+                        </select>
                     </div>
 
-                    <!-- Название текущей сборки -->
-                    <h3 id="buildName" style="color: #ffffff; transition: 0.2s;">Black & White Classic (by samp store)</h3>
-                    
-                    <!-- Список характеристик -->
-                    <ul class="build-specs" id="buildSpecs" style="margin-top: 12px;">
-                        <li>Строгий монохромный HUD (Белая буква "S" на черном фоне)</li>
-                        <li>Эксклюзивный Desert Eagle Chrome / Matte Black</li>
-                        <li>Контрастный Timecyc для идеальной видимости скинов на каптах</li>
-                    </ul>
-
-                    <div class="build-bottom">
-                        <!-- Цена -->
-                        <div class="price" id="buildPrice">150 <span>₽</span></div>
-                        <!-- Кнопка действия с авто-биндом текста -->
-                        <a href="https://t.me/nexuscoder52" id="buildLink" target="_blank" class="btn-buy">Купить</a>
+                    <!-- Название предмета (Симуляция поиска) -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Название предмета</label>
+                        <select id="itemName" class="w-full bg-purple-950/30 border border-purple-900/60 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition" onchange="updateMarketPrices()">
+                            <!-- Машины -->
+                            <option value="subaru" data-gos="1500000" data-market="1250000" data-liq="8">Subaru Impreza WRX STI</option>
+                            <option value="skyline" data-gos="680000" data-market="600000" data-liq="9">Nissan Skyline R34</option>
+                            <option value="m5f90" data-gos="9500000" data-market="9000000" data-liq="7">BMW M5 F90</option>
+                        </select>
                     </div>
+
+                    <!-- Цена покупки -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Тебе предлагают купить за (руб):</label>
+                        <input id="buyPrice" type="number" value="500000" class="w-full bg-purple-950/30 border border-purple-900/60 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition font-mono text-lg" placeholder="Например: 550000">
+                    </div>
+
+                    <!-- Кнопка рассчитать -->
+                    <button onclick="calculateDeal()" class="w-full br-accent text-white font-bold py-3.5 px-4 rounded-xl shadow-lg hover:opacity-90 active:scale-95 transition duration-200 mt-2 uppercase tracking-wider text-sm shadow-pink-500/10">
+                        Проверить выгоду
+                    </button>
                 </div>
             </div>
 
-        </div>
-    </section>
+            <!-- Правая колонка: Вердикт и Аналитика (Результаты) -->
+            <div class="space-y-6">
+                
+                <!-- Главный Вердикт -->
+                <div id="verdictBox" class="bg-neutral-900/60 border border-neutral-800 rounded-2xl p-6 text-center shadow-xl transition-all duration-300">
+                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-widest block mb-1">Вердикт системы</span>
+                    <div id="verdictText" class="text-2xl font-black uppercase text-gray-400">Ожидание данных...</div>
+                    <div id="profitText" class="text-sm text-gray-400 mt-1 font-mono">Введите параметры для расчета</div>
+                </div>
 
-    <!-- Отзывы -->
-    <section id="reviews" class="container reviews">
-        <h2 class="section-title">Отзывы покупателей</h2>
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="review-header"><span class="reviewer-name">Dmitry_Volkov</span><span class="review-stars">★★★★★</span></div>
-                <p class="review-text">«Взял гетто сборку, фпс вырос со 120 до 250 на каптах. Ни одного краша.»</p>
+                <!-- Карточка рыночной справки -->
+                <div class="bg-black/20 border border-purple-900/20 rounded-2xl p-6 space-y-4">
+                    <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Рыночная справка (Средняя по б/у)</h3>
+                    
+                    <div class="flex justify-between items-center border-b border-purple-900/20 pb-2">
+                        <span class="text-gray-400 text-sm">Госс. цена:</span>
+                        <span id="infoGos" class="font-mono text-sm font-semibold text-gray-200">0 руб.</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center border-b border-purple-900/20 pb-2">
+                        <span class="text-gray-400 text-sm">Средний рынок:</span>
+                        <span id="infoMarket" class="font-mono text-sm font-semibold text-purple-300">0 руб.</span>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">Ликвидность (спрос):</span>
+                        <div class="flex items-center gap-2">
+                            <span id="infoLiq" class="font-bold text-sm text-gray-200">0/10</span>
+                            <div class="w-16 bg-purple-950 rounded-full h-1.5 overflow-hidden">
+                                <div id="liqBar" class="bg-pink-500 h-1.5 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="review-card">
-                <div class="review-header"><span class="reviewer-name">Alex_Mercer</span><span class="review-stars">★★★★★</span></div>
-                <p class="review-text">«RP сборка просто топ, глаза не устают, картинка сочная. Спасибо за помощь в ТГ.»</p>
-            </div>
         </div>
-    </section>
 
-    <!-- Подвал сайта -->
-    <footer>
-        <div class="container">
-            <p>© 2026 SAMP STORE. Все права защищены. Связь в Telegram: @nexuscoder52</p>
-        </div>
-    </footer>
+    </main>
 
-    <!-- СКРИПТ ЖИВОГО ПЕРЕКЛЮЧЕНИЯ И БИНДА ТЕКСТА В ТГ -->
+    <!-- Логика калькулятора на JavaScript -->
     <script>
-        const buildData = {
-            bw: {
-                badge: 'PREMIUM PRIVAT',
-                badgeColor: '#ffffff',
-                name: 'Black & White Classic (by samp store)',
-                nameColor: '#ffffff',
-                specs: [
-                    'Строгий монохромный HUD (Белая буква "S" на черном фоне)',
-                    'Эксклюзивный Desert Eagle Chrome / Matte Black',
-                    'Контрастный Timecyc для идеальной видимости скинов на каптах'
-                ],
-                price: '150 <span>₽</span>',
-                link: 'https://t.me/nexuscoder52'
-            },
-            toxic: {
-                badge: 'TOXIC EDITION',
-                badgeColor: '#00f2fe',
-                name: 'Toxic Neon Edition (by samp store)',
-                nameColor: '#00f2fe',
-                specs: [
-                    'Ядовито-зеленый неоновый HUD и кастомный прицел-точка',
-                    'Эксклюзивный Deagle со светящимся кислотным принтом',
-                    'Приватные скрипты оптимизации (Стабильные 230-250 FPS)'
-                ],
-                price: '150 <span>₽</span>',
-                link: 'https://t.me/nexuscoder52'
-            }
+        // Данные для переключения категорий
+        const itemsData = {
+            auto: [
+                { id: 'subaru', name: 'Subaru Impreza WRX STI', gos: 1500000, market: 1250000, liq: 8 },
+                { id: 'skyline', name: 'Nissan Skyline R34', gos: 680000, market: 600000, liq: 9 },
+                { id: 'm5f90', name: 'BMW M5 F90', gos: 9500000, market: 9000000, liq: 7 }
+            ],
+            skin: [
+                { id: 'a4', name: 'Скин: Влад А4', gos: 0, market: 4500000, liq: 9 },
+                { id: 'litvin', name: 'Скин: Литвин', gos: 0, market: 3800000, liq: 8 },
+                { id: 'clown', name: 'Скин: Клоун', gos: 250000, market: 120000, liq: 3 }
+            ],
+            acc: [
+                { id: 'wings', name: 'Крылья демона', gos: 0, market: 2500000, liq: 7 },
+                { id: 'mask', name: 'Маска Скорпиона', gos: 100000, market: 45000, liq: 4 }
+            ]
         };
 
-        function switchBuild(type) {
-            // Переключаем активный класс на кнопках
-            const buttons = document.querySelectorAll('.v-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        const categorySelect = document.getElementById('itemCategory');
+        const nameSelect = document.getElementById('itemName');
 
-            // Получаем данные
-            const data = buildData[type];
-
-            // Обновляем элементы карточки
-            document.getElementById('buildBadge').innerText = data.badge;
-            document.getElementById('buildBadge').style.color = data.badgeColor;
-            
-            const nameEl = document.getElementById('buildName');
-            nameEl.innerText = data.name;
-            nameEl.style.color = data.nameColor;
-
-            const specsUl = document.getElementById('buildSpecs');
-            specsUl.innerHTML = '';
-            data.specs.forEach(spec => {
-                const li = document.createElement('li');
-                li.innerText = spec;
-                specsUl.appendChild(li);
+        // Динамическое обновление списка товаров при смене категории
+        categorySelect.addEventListener('change', () => {
+            const cat = categorySelect.value;
+            nameSelect.innerHTML = '';
+            itemsData[cat].forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item.id;
+                opt.textContent = item.name;
+                opt.setAttribute('data-gos', item.gos);
+                opt.setAttribute('data-market', item.market);
+                opt.setAttribute('data-liq', item.liq);
+                nameSelect.appendChild(opt);
             });
+            updateMarketPrices();
+        });
 
-            document.getElementById('buildPrice').innerHTML = data.price;
-            document.getElementById('buildLink').href = data.link;
+        function updateMarketPrices() {
+            const selectedOpt = nameSelect.options[nameSelect.selectedIndex];
+            if (!selectedOpt) return;
+
+            const gos = parseInt(selectedOpt.getAttribute('data-gos'));
+            const market = parseInt(selectedOpt.getAttribute('data-market'));
+            const liq = parseInt(selectedOpt.getAttribute('data-liq'));
+
+            document.getElementById('infoGos').textContent = gos === 0 ? 'Донат / Эксклюзив' : gos.toLocaleString() + ' руб.';
+            document.getElementById('infoMarket').textContent = market.toLocaleString() + ' руб.';
+            document.getElementById('infoLiq').textContent = liq + '/10';
+            document.getElementById('liqBar').style.width = (liq * 10) + '%';
         }
 
-        // Фиксация ссылки при первой загрузке страницы
-        window.onload = function() {
-            document.getElementById('buildLink').href = buildData.bw.link;
-        };
-    </script>
+        // Логика самого расчета выгоды
+        function calculateDeal() {
+            const selectedOpt = nameSelect.options[nameSelect.selectedIndex];
+            const buyPrice = parseInt(document.getElementById('buyPrice').value);
 
+            if(!selectedOpt || isNaN(buyPrice) || buyPrice <= 0) {
+                alert('Введите корректную цену покупки!');
+                return;
+            }
+
+            const marketPrice = parseInt(selectedOpt.getAttribute('data-market'));
+            const profit = marketPrice - buyPrice;
+
+            const verdictBox = document.getElementById('verdictBox');
+            const verdictText = document.getElementById('verdictText');
+            const profitText = document.getElementById('profitText');
+
+            // Очищаем старые стили оформления вердикта
+            verdictBox.className = "bg-neutral-900/60 border rounded-2xl p-6 text-center shadow-xl transition-all duration-300 ";
+
+            if (profit > 100000) {
+                // Жирная выгода (Зеленый)
+                verdictBox.classList.add('border-emerald-500/50', 'bg-emerald-950/20');
+                verdictText.textContent = "🔥 Идеальная сделка!";
+                verdictText.className = "text-2xl font-black uppercase text-emerald-400";
+                profitText.textContent = `Чистый навар: +${profit.toLocaleString()} руб.`;
+                profitText.className = "text-sm text-emerald-300 font-mono mt-1";
+            } else if (profit >= 0 && profit <= 100000) {
+                // Около нуля / Небольшой плюс (Желтый)
+                verdictBox.classList.add('border-amber-500/50', 'bg-amber-950/20');
+                verdictText.textContent = "⚖️ Сомнительно";
+                verdictText.className = "text-2xl font-black uppercase text-amber-400";
+                profitText.textContent = `Прибыль минимальна: +${profit.toLocaleString()} руб. Долго будешь отбивать комиссию.`;
+                profitText.className = "text-sm text-amber-300 font-mono mt-1";
+            } else {
+                // Уход в минус (Красный)
+                verdictBox.classList.add('border-rose-500/50', 'bg-rose-950/20');
+                verdictText.textContent = "❌ Оверпрайс / Минус";
+                verdictText.className = "text-2xl font-black uppercase text-rose-400";
+                profitText.textContent = `Ты уходишь в минус на: ${profit.toLocaleString()} руб.! Не покупай.`;
+                profitText.className = "text-sm text-rose-300 font-mono mt-1";
+            }
+        }
+
+        // Первичная инициализация при открытии
+        updateMarketPrices();
+    </script>
 </body>
 </html>
