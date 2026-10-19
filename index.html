@@ -1,149 +1,178 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Твой Проект RP — Играй в Россию на телефоне и ПК</title>
-    <!-- Подключаем Tailwind CSS для крутых стилей -->
-    <script src="https://jsdelivr.net"></script>
-    <style>
-        body {
-            background-color: #0b0c10;
-            color: #c5c6c7;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-        /* Эффект свечения для кнопок */
-        .neon-btn {
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
-            transition: all 0.3s ease;
-        }
-        .neon-btn:hover {
-            box-shadow: 0 0 35px rgba(139, 92, 246, 0.8);
-            transform: scale(1.02);
-        }
-        /* Градиентный текст */
-        .text-gradient {
-            background: linear-gradient(45deg, #a78bfa, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS RP — HALLOWEEN</title>
+<link rel="stylesheet" href="https://cloudflare.com">
+<style>
+@import url('https://googleapis.com');
+* { margin:0; padding:0; box-sizing:border-box; text-decoration:none; list-style:none; outline:none; }
+body { background:#030207; color:#f1f5f9; font-family:'Montserrat', sans-serif; overflow-x:hidden; padding-top:80px; position:relative; }
+.bg-glow { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-2; background: radial-gradient(circle at 5% 10%, rgba(249,115,22,0.15) 0%, transparent 45%), radial-gradient(circle at 95% 90%, rgba(139,92,246,0.12) 0%, transparent 45%), #040308; }
+.web-l, .web-r { position:absolute; top:0; width:100px; height:100px; opacity:0.15; z-index:30; pointer-events:none; }
+.web-l { left:0; border-right:1px solid #fff; border-bottom:1px solid #fff; border-radius:0 0 100% 0; }
+.web-r { right:0; border-left:1px solid #fff; border-bottom:1px solid #fff; border-radius:0 0 0 100%; }
+.pmp { font-size:38px; position:absolute; filter:drop-shadow(0 0 12px rgba(249,115,22,0.6)); animation: float 4s ease-in-out infinite; pointer-events:none; }
+@keyframes float { 0%,100% { transform:translateY(0) rotate(0deg); } 50% { transform:translateY(-12px) rotate(6deg); } }
+.bat-container { position: fixed; z-index: -1; pointer-events: none; }
+.bat-body { position: relative; width: 40px; height: 12px; }
+.wing { position: absolute; width: 22px; height: 14px; background: #0c0b18; border: 1px solid rgba(139, 92, 246, 0.4); border-radius: 16px 16px 0 0; top: 0; }
+.wing-left { left: 0; transform-origin: right center; animation: flap-left 0.25s ease-in-out infinite alternate; }
+.wing-right { right: 0; transform-origin: left center; animation: flap-right 0.25s ease-in-out infinite alternate; }
+.bat-head { position: absolute; left: 17px; top: -3px; width: 6px; height: 6px; background: #0c0b18; transform: rotate(45deg); border-left: 1px solid rgba(139,92,246,0.4); border-top: 1px solid rgba(139,92,246,0.4); }
+.b1 { animation: fly-l-r 10s linear infinite; top: 15vh; }
+.b2 { animation: fly-r-l 13s linear infinite; top: 45vh; animation-delay: 3s; }
+.b3 { animation: fly-l-r 11s linear infinite; top: 75vh; animation-delay: 6s; }
+@keyframes flap-left { 0% { transform: rotate(25deg); } 100% { transform: rotate(-35deg); } }
+@keyframes flap-right { 0% { transform: rotate(-25deg); } 100% { transform: rotate(35deg); } }
+@keyframes fly-l-r { 0% { transform: translateX(-60px) scale(0.7); left: 0; } 50% { transform: translateY(-30px) scale(1); } 100% { transform: translateX(105vw) scale(0.7); left: 0; } }
+@keyframes fly-r-l { 0% { transform: translateX(105vw) scale(0.7); } 50% { transform: translateY(30px) scale(1); } 100% { transform: translateX(-60px) scale(0.7); } }
+</style>
 </head>
-<body class="overflow-x-hidden">
-
-    <!-- НАВИГАЦИЯ (ШАПКА) -->
-    <nav class="sticky top-0 z-50 bg-[#0f111a]/90 backdrop-blur-md border-b border-purple-900/30 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-            <!-- Твой логотип -->
-            <span class="text-2xl font-black tracking-wider text-white">YOUR<span class="text-purple-500">RP</span></span>
-        </div>
-        <!-- Ссылки -->
-        <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
-            <a href="#about" class="text-white hover:text-purple-400 transition">О проекте</a>
-            <a href="#how-to-start" class="hover:text-purple-400 transition">Как начать</a>
-            <a href="#donate" class="hover:text-purple-400 transition">Донат</a>
-            <a href="#forum" class="hover:text-purple-400 transition">Форум</a>
-        </div>
-        <!-- Кнопка "Играть" -->
-        <a href="#how-to-start" class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold px-6 py-2.5 rounded-full transition duration-300">
-            Начать играть
-        </a>
-    </nav>
-
-    <!-- ГЛАВНЫЙ ЭКРАН (HERO SECTION) -->
-    <header class="relative min-h-[85vh] flex items-center justify-center text-center px-4 bg-radial from-purple-900/20 via-transparent to-transparent">
-        <div class="max-w-4xl space-y-6">
-            <span class="bg-purple-500/10 text-purple-400 border border-purple-500/30 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
-                Глобальное обновление уже в сети
-            </span>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-none">
-                Погрузись в реальную <br><span class="text-gradient">Россию на телефоне</span>
-            </h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
-                Уникальный RolePlay проект. Покупай крутые тачки, создавай банды, открывай бизнес и становись лидером своего города прямо сейчас.
-            </p>
-            <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#how-to-start" class="neon-btn bg-purple-600 text-white font-extrabold px-10 py-4 rounded-xl text-lg shadow-lg">
-                    СКАЧАТЬ ЛАУНЧЕР
-                </a>
-                <a href="#about" class="bg-gray-800/80 hover:bg-gray-700 text-white font-bold px-8 py-4 rounded-xl text-lg transition">
-                    Смотреть обзор
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- ОСОБЕННОСТИ ИГРЫ (FEATURES) -->
-    <section id="about" class="max-w-6xl mx-auto px-6 py-20">
-        <h2 class="text-3xl font-black text-center text-white mb-12 uppercase tracking-wide">
-            Что тебя ждет на <span class="text-purple-500">нашем сервере?</span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Карточка 1 -->
-            <div class="bg-[#131520] p-8 rounded-2xl border border-gray-800 hover:border-purple-500/40 transition group">
-                <div class="w-12 h-12 bg-purple-600/10 text-purple-400 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">🏎️</div>
-                <h3 class="text-xl font-bold text-white mb-3">Огромный автопарк</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Сотни детализированных русских и зарубежных автомобилей. Тюнингуй, крась и собирай свою коллекцию.</p>
-            </div>
-            <!-- Карточка 2 -->
-            <div class="bg-[#131520] p-8 rounded-2xl border border-gray-800 hover:border-purple-500/40 transition group">
-                <div class="w-12 h-12 bg-purple-600/10 text-purple-400 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">💼</div>
-                <h3 class="text-xl font-bold text-white mb-3">Живая экономика</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Покупай заправки, магазины, казино. Работай в такси, полиции или МЧС. Выбор за тобой!</p>
-            </div>
-            <!-- Карточка 3 -->
-            <div class="bg-[#131520] p-8 rounded-2xl border border-gray-800 hover:border-purple-500/40 transition group">
-                <div class="w-12 h-12 bg-purple-600/10 text-purple-400 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">👥</div>
-                <h3 class="text-xl font-bold text-white mb-3">Сходки и Семьи</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Создавай свои группировки, воюй за районы, катайся с друзьями по ночным городам и устраивай жесткие тусовки.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- КАК НАЧАТЬ ИГРАТЬ (ИНСТРУКЦИЯ) -->
-    <section id="how-to-start" class="bg-[#0f111a] border-y border-purple-950/40 py-20 px-6">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-black text-center text-white mb-16 uppercase tracking-wide">
-                Три простых шага, <span class="text-purple-500">чтобы войти в игру</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                <!-- Шаг 1 -->
-                <div class="text-center relative">
-                    <div class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-4 shadow-lg shadow-purple-500/20">1</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Скачай клиент</h3>
-                    <p class="text-gray-400 text-sm max-w-xs mx-auto mb-4">Загрузи наш официальный лаунчер на свой Android, iOS или ПК.</p>
-                    <button class="bg-purple-600/20 hover:bg-purple-600 text-purple-300 hover:text-white font-bold text-xs py-2 px-4 rounded-lg transition">Скачать .APK</button>
-                </div>
-                <!-- Шаг 2 -->
-                <div class="text-center relative">
-                    <div class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-4 shadow-lg shadow-purple-500/20">2</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Придумай ник</h3>
-                    <p class="text-gray-400 text-sm max-w-xs mx-autoя">Придумай имя в формате Имя_Фамилия (например, Vasya_Petrov) и вставь его в настройки лаунчера.</p>
-                </div>
-                <!-- Шаг 3 -->
-                <div class="text-center relative">
-                    <div class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-4 shadow-lg shadow-purple-500/20">3</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Запускай и играй</h3>
-                    <p class="text-gray-400 text-sm max-w-xs mx-auto">Выбирай любой из наших серверов, проходи регистрацию и забирай стартовые бонусы!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ФУТЕР (ПОДВАЛ САЙТА) -->
-    <footer class="bg-[#07080c] text-gray-500 text-xs py-12 px-6 border-t border-gray-900 text-center">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-left">
-                <p class="text-sm font-bold text-white mb-1">YOURRP GAMES STUDIO</p>
-                <p>© Все права защищены. Проект не связан с Rockstar Games.</p>
-            </div>
-            <div class="flex space-x-6 text-sm">
-                <a href="#" class="hover:text-white transition">Донат</a>
-                <a href="#" class="hover:text-white transition">Соглашение</a>
-                <a href="#" class="hover:text-white transition">Поддержка</a>
-            </div>
-        </div>
-    </footer>
-
+<body>
+<div class="bg-glow"></div>
+<div class="web-l"></div><div class="web-r"></div>
+<div class="bat-container b1"><div class="bat-body"><div class="bat-head"></div><div class="wing wing-left"></div><div class="wing wing-right"></div></div></div>
+<div class="bat-container b2"><div class="bat-body"><div class="bat-head"></div><div class="wing wing-left"></div><div class="wing wing-right"></div></div></div>
+<div class="bat-container b3"><div class="bat-body"><div class="bat-head"></div><div class="wing wing-left"></div><div class="wing wing-right"></div></div></div>
+<style>
+nav { position:fixed; top:0; left:0; right:0; height:80px; z-index:100; background:rgba(3,3,9,0.85); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:space-between; padding:0 24px; }
+@media (min-width:1024px) { nav { padding:0 80px; } }
+.logo-box { display:flex; flex-direction:column; }
+.logo { font-size:22px; font-weight:900; color:#fff; text-transform:uppercase; }
+.logo span { color:#f97316; text-shadow:0 0 15px rgba(249,115,22,0.5); }
+.sublogo { font-size:8px; color:#a855f7; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-top:-2px; }
+.menu { display:none; gap:35px; }
+@media (min-width:768px) { .menu { display:flex; } }
+.menu a { color:#64748b; font-size:12px; font-weight:700; text-transform:uppercase; }
+.btn-donate { background:linear-gradient(90deg,#f97316,#a855f7); border:none; color:#fff; padding:12px 26px; font-size:11px; font-weight:900; border-radius:10px; text-transform:uppercase; cursor:pointer; box-shadow:0 4px 20px rgba(249,115,22,0.25); }
+.hero { min-height:calc(100vh - 80px); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:40px 24px; position:relative; }
+.tag-online { background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.25); padding:8px 20px; border-radius:10px; font-size:11px; font-weight:800; color:#10b981; margin-bottom:28px; display:inline-flex; align-items:center; gap:10px; }
+.dot { width:8px; height:8px; background:#10b981; border-radius:50%; box-shadow:0 0 12px #10b981; }
+.hero h1 { font-size:42px; font-weight:900; line-height:1.1; color:#fff; margin-bottom:24px; text-transform:uppercase; }
+@media (min-width:768px) { .hero h1 { font-size:72px; } }
+.hero h1 span { background:linear-gradient(135deg,#fff 30%,#f97316 75%,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero p { color:#64748b; font-size:15px; max-width:640px; line-height:1.7; margin-bottom:40px; }
+.hero-actions { display:flex; flex-direction:column; gap:16px; width:100%; max-width:340px; }
+@media (min-width:480px) { .hero-actions { flex-direction:row; max-width:none; justify-content:center; } }
+.btn-p { background:#fff; color:#030309; padding:18px 42px; font-size:13px; font-weight:900; border-radius:14px; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:10px; }
+.btn-p:hover { background:#f97316; color:#fff; box-shadow:0 0 35px rgba(249,115,22,0.45); }
+.btn-s { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); color:#fff; padding:18px 42px; font-size:13px; font-weight:700; border-radius:14px; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:10px; }
+</style>
+<nav>
+<div class="logo-box"><div class="logo">NEXUS<span>_</span>RP</div><div class="sublogo">by NEXUS CODER</div></div>
+<div class="menu"><a href="#servers">Сервера</a><a href="#media">Сообщество</a><a href="#how-to">Как начать</a></div>
+<button onclick="toggleM(true)" class="btn-donate"><i class="fa-solid fa-ghost" style="margin-right:6px;"></i>Донат</button>
+</nav>
+<header class="hero">
+<div class="pmp" style="top:15%; left:5%;">🎃</div><div class="pmp" style="top:20%; right:5%; animation-delay:-2s;">🎃</div>
+<div class="tag-online"><div class="dot"></div>HALLOWEEN ONLINE: 5,491</div>
+<h1>Эволюция<br><span>CRMP Mobile</span></h1>
+<p>Хэллоуинский ивент уже на серверах проекта! Полностью обновленный движок, крутая физика авто и безграничный мир криминальной России на твоем смартфоне.</p>
+<div class="hero-actions">
+<a href="#how-to" class="btn-p"><i class="fa-solid fa-download"></i>Скачать клиент</a>
+<a href="#servers" class="btn-s"><i class="fa-solid fa-server"></i>Список серверов</a>
+</div>
+</header>
+<style>
+.title-box { padding:60px 24px 20px; text-align:center; }
+.title-box span { color:#f97316; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:3px; }
+.title-box h2 { font-size:32px; font-weight:900; color:#fff; margin-top:8px; text-transform:uppercase; }
+.grid { display:grid; grid-template-columns:1fr; gap:24px; padding:24px; max-width:1200px; margin:0 auto; }
+@media (min-width:768px) { .grid { grid-template-columns:repeat(3,1fr); padding:40px 24px; } }
+.card { background:linear-gradient(145deg, rgba(20,12,38,0.85) 0%, rgba(8,5,20,0.95) 100%); border:1px solid rgba(255,255,255,0.03); border-radius:24px; padding:35px; position:relative; transition:0.3s; box-shadow:0 15px 35px rgba(0,0,0,0.4); }
+.card:hover { border-color:rgba(249,115,22,0.35); transform:translateY(-5px); }
+.card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.c-tag { font-size:11px; font-weight:900; color:#a855f7; display:flex; align-items:center; gap:6px; }
+.c-badge { background:rgba(249,115,22,0.12); color:#f97316; font-size:9px; font-weight:900; padding:5px 10px; border-radius:6px; }
+.card h3 { font-size:22px; font-weight:900; color:#fff; margin-bottom:25px; }
+.progress { display:flex; flex-direction:column; gap:8px; }
+.p-labels { display:flex; justify-content:space-between; font-size:12px; color:#64748b; font-weight:700; }
+.p-labels span:last-child { color:#fff; }
+.track { width:100%; height:8px; background:rgba(255,255,255,0.03); border-radius:10px; overflow:hidden; }
+.fill { height:100%; background:linear-gradient(90deg,#8b5cf6,#f97316); border-radius:10px; box-shadow:0 0 10px #f97316; }
+.step { width:50px; height:50px; background:linear-gradient(135deg,#8b5cf6,#f97316); color:#fff; font-weight:900; font-size:20px; display:flex; align-items:center; justify-content:center; border-radius:14px; margin-bottom:24px; }
+.btn-step { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); color:#fff; width:100%; padding:14px; border-radius:12px; font-size:12px; font-weight:800; cursor:pointer; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:8px; }
+.social-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:1200px; margin:0 auto; padding:24px; }
+@media (min-width:768px) { .social-grid { grid-template-columns:repeat(4,1fr); } }
+.soc { display:flex; align-items:center; justify-content:center; gap:12px; padding:20px; border-radius:16px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); color:#fff; font-size:14px; font-weight:800; text-transform:uppercase; transition:0.3s; }
+.soc-vk:hover { background:#0077ff; } .soc-tg:hover { background:#229edd; } .soc-dc:hover { background:#5865f2; } .soc-yt:hover { background:#ff0000; }
+.overlay { position:fixed; inset:0; background:rgba(2,2,6,0.85); backdrop-filter:blur(15px); -webkit-backdrop-filter:blur(15px); z-index:1000; display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:0.3s; }
+.overlay.active { opacity:1; pointer-events:auto; }
+.popup { background:#0d0a14; border:1px solid rgba(255,255,255,0.06); width:100%; max-width:420px; border-radius:28px; padding:35px; position:relative; }
+.close { position:absolute; top:22px; right:22px; background:none; border:none; color:#475569; font-size:22px; cursor:pointer; }
+.row { margin-bottom:20px; display:flex; flex-direction:column; gap:8px; }
+.row label { font-size:10px; font-weight:800; color:#64748b; text-transform:uppercase; }
+.row input, .row select { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); padding:16px; border-radius:12px; color:#fff; font-size:14px; outline:none; }
+footer { background:#010104; border-top:1px solid rgba(255,255,255,0.04); padding:50px 24px; margin-top:80px; }
+.f-wrap { max-width:1200px; margin:0 auto; display:flex; flex-direction:column; gap:24px; align-items:center; justify-content:between; }
+@media (min-width:768px) { .f-wrap { flex-direction:row; text-align:left; } }
+.f-info h4 { color:#fff; font-size:16px; font-weight:900; margin-bottom:6px; }
+.f-info p { color:#334155; font-size:12px; }
+.badge-coder { background:rgba(255,255,255,0.02); border:1px solid rgba(249,115,22,0.2); padding:12px 24px; border-radius:14px; font-size:12px; font-weight:700; color:#64748b; }
+.badge-coder b { background:linear-gradient(90deg,#f97316,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:900; }
+</style>
+<section id="servers">
+<div class="title-box"><span>Игровые узлы</span><h2>Наши Сервера</h2></div>
+<div class="grid">
+<div class="card">
+<div class="card-top"><span class="c-tag"><i class="fa-solid fa-ghost"></i>NODE 01</span><span class="c-badge">EVENT X3</span></div>
+<h3>EMERALD</h3>
+<div class="progress"><div class="p-labels"><span>Заполненность</span><span>942 / 1000</span></div><div class="track"><div class="fill" style="width: 94.2%"></div></div></div>
+</div>
+<div class="card">
+<div class="card-top"><span class="c-tag"><i class="fa-solid fa-ghost"></i>NODE 02</span><span class="c-badge" style="color:#a855f7; background:rgba(168,85,247,0.12)">🎃 EVENT</span></div>
+<h3>RUBY</h3>
+<div class="progress"><div class="p-labels"><span>Заполненность</span><span>998 / 1000</span></div><div class="track"><div class="fill" style="width: 99.8%"></div></div></div>
+</div>
+<div class="card">
+<div class="card-top"><span class="c-tag"><i class="fa-solid fa-ghost"></i>NODE 03</span><span class="c-badge" style="color:#3b82f6; background:rgba(59,130,246,0.12)">FREE</span></div>
+<h3>SAPPHIRE</h3>
+<div class="progress"><div class="p-labels"><span>Заполненность</span><span>312 / 1000</span></div><div class="track"><div class="fill" style="width: 31.2%"></div></div></div>
+</div>
+</div>
+</section>
+<section id="media">
+<div class="title-box"><span>Мы в сети</span><h2>Наше Сообщество</h2></div>
+<div class="social-grid">
+<a href="#" class="soc soc-vk"><i class="fa-brands fa-vk"></i>ВКонтакте</a>
+<a href="#" class="soc soc-tg"><i class="fa-brands fa-telegram"></i>Telegram</a>
+<a href="#" class="soc soc-dc"><i class="fa-brands fa-discord"></i>Discord</a>
+<a href="#" class="soc soc-yt"><i class="fa-brands fa-youtube"></i>YouTube</a>
+</div>
+</section>
+<section id="how-to">
+<div class="title-box"><span>Инструкция</span><h2>Быстрый старт</h2></div>
+<div class="grid">
+<div class="card">
+<div class="step">01</div><h3>Скачай лаунчер</h3><p>Загрузи наш легкий лаунчер. Он сам распакует файлы и обновит кэш игры.</p>
+<button class="btn-step"><i class="fa-solid fa-download"></i>Скачать .APK</button>
+</div>
+<div class="card"><div class="step">02</div><h3>Задай имя</h3><p>Открой настройки приложения и впиши будущий никнейм в формате: Имя_Фамилия.</p></div>
+<div class="card"><div class="step">03</div><h3>Залетай в игру</h3><p>Выбирай любую свободную локацию, проходи регистрацию и забирай стартовые бонусы.</p></div>
+</div>
+</section>
+<div id="donate-modal" class="overlay">
+<div class="popup">
+<button onclick="toggleM(false)" class="close">✕</button>
+<h3>Пополнение счета</h3>
+<form onsubmit="event.preventDefault(); alert('Перенаправление к оплате...');">
+<div class="row"><label>Игровой Никнейм</label><input type="text" required placeholder="Ivan_Ivanov"></div>
+<div class="row"><label>Сумма пополнения (₽)</label><input type="number" required placeholder="1000"></div>
+<div class="row"><label>Выбери Сервер</label><select><option>01 // EMERALD</option><option>02 // RUBY</option><option>03 // SAPPHIRE</option></select></div>
+<button type="submit" class="btn-donate" style="width:100%; padding:16px; font-size:12px; margin-top:10px;">Оплатить донат</button>
+</form>
+</div>
+</div>
+<footer>
+<div class="f-wrap">
+<div class="f-info"><h4>NEXUS SYSTEM INC.</h4><p>© Все права защищены. Сайт разработан для мобильных проектов CRMP / SAMP.</p></div>
+<div class="badge-coder">Engine Developer: <b>NEXUS CODER</b></div>
+</div>
+</footer>
+<script>
+function toggleM(s) { const m = document.getElementById('donate-modal'); if(s) m.classList.add('active'); else m.classList.remove('active'); }
+</script>
 </body>
 </html>
