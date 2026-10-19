@@ -2,69 +2,148 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Игра: Успей Слить!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Твой Проект RP — Играй в Россию на телефоне и ПК</title>
+    <!-- Подключаем Tailwind CSS для крутых стилей -->
+    <script src="https://jsdelivr.net"></script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: #1a1a1a; color: #fff; padding-top: 50px; }
-        .game-box { border: 2px solid #00ffcc; display: inline-block; padding: 30px; border-radius: 10px; background: #2a2a2a; }
-        button { background: #00ffcc; border: none; padding: 10px 20px; font-size: 18px; cursor: pointer; border-radius: 5px; margin: 10px; font-weight: bold; }
-        button:hover { background: #00ccaa; }
-        .danger { background: #ff4444; color: white; }
-        .danger:hover { background: #cc3333; }
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        /* Эффект свечения для кнопок */
+        .neon-btn {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+        }
+        .neon-btn:hover {
+            box-shadow: 0 0 35px rgba(139, 92, 246, 0.8);
+            transform: scale(1.02);
+        }
+        /* Градиентный текст */
+        .text-gradient {
+            background: linear-gradient(45deg, #a78bfa, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
-<div class="game-box">
-    <h1>Игра: Вовремя Слей</h1>
-    <p>Накопленные очки (риск растет): <span id="current-points" style="font-size: 24px; color: #00ffcc;">0</span></p>
-    <p>Твой общий банк: <span id="bank" style="font-size: 24px; color: #ffcc00;">0</span></p>
-    
-    <button id="btn-accumulate">Накопить очки</button>
-    <button id="btn-cashout" class="danger">СЛИТЬ В БАНК</button>
-    
-    <p id="status-message" style="margin-top: 20px; font-style: italic;"></p>
-</div>
+    <!-- НАВИГАЦИЯ (ШАПКА) -->
+    <nav class="sticky top-0 z-50 bg-[#0f111a]/90 backdrop-blur-md border-b border-purple-900/30 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <!-- Твой логотип -->
+            <span class="text-2xl font-black tracking-wider text-white">YOUR<span class="text-purple-500">RP</span></span>
+        </div>
+        <!-- Ссылки -->
+        <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
+            <a href="#about" class="text-white hover:text-purple-400 transition">О проекте</a>
+            <a href="#how-to-start" class="hover:text-purple-400 transition">Как начать</a>
+            <a href="#donate" class="hover:text-purple-400 transition">Донат</a>
+            <a href="#forum" class="hover:text-purple-400 transition">Форум</a>
+        </div>
+        <!-- Кнопка "Играть" -->
+        <a href="#how-to-start" class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold px-6 py-2.5 rounded-full transition duration-300">
+            Начать играть
+        </a>
+    </nav>
 
-<script>
-    let points = 0;
-    let bank = 0;
-    let crashChance = 0.05; // Шанс сгорания очков при каждом шаге (5%)
+    <!-- ГЛАВНЫЙ ЭКРАН (HERO SECTION) -->
+    <header class="relative min-h-[85vh] flex items-center justify-center text-center px-4 bg-radial from-purple-900/20 via-transparent to-transparent">
+        <div class="max-w-4xl space-y-6">
+            <span class="bg-purple-500/10 text-purple-400 border border-purple-500/30 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
+                Глобальное обновление уже в сети
+            </span>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-none">
+                Погрузись в реальную <br><span class="text-gradient">Россию на телефоне</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
+                Уникальный RolePlay проект. Покупай крутые тачки, создавай банды, открывай бизнес и становись лидером своего города прямо сейчас.
+            </p>
+            <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#how-to-start" class="neon-btn bg-purple-600 text-white font-extrabold px-10 py-4 rounded-xl text-lg shadow-lg">
+                    СКАЧАТЬ ЛАУНЧЕР
+                </a>
+                <a href="#about" class="bg-gray-800/80 hover:bg-gray-700 text-white font-bold px-8 py-4 rounded-xl text-lg transition">
+                    Смотреть обзор
+                </a>
+            </div>
+        </div>
+    </header>
 
-    const pointsEl = document.getElementById('current-points');
-    const bankEl = document.getElementById('bank');
-    const statusEl = document.getElementById('status-message');
+    <!-- ОСОБЕННОСТИ ИГРЫ (FEATURES) -->
+    <section id="about" class="max-w-6xl mx-auto px-6 py-20">
+        <h2 class="text-3xl font-black text-center text-white mb-12 uppercase tracking-wide">
+            Что тебя ждет на <span class="text-purple-500">нашем сервере?</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Карточка 1 -->
+            <div class="bg-[#131520] p-8 rounded-2xl border border-gray-800 hover:border-purple-500/40 transition group">
+                <div class="w-12 h-12 bg-purple-600/10 text-purple-400 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">🏎️</div>
+                <h3 class="text-xl font-bold text-white mb-3">Огромный автопарк</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Сотни детализированных русских и зарубежных автомобилей. Тюнингуй, крась и собирай свою коллекцию.</p>
+            </div>
+            <!-- Карточка 2 -->
+            <div class="bg-[#131520] p-8 rounded-2xl border border-gray-800 hover:border-purple-500/40 transition group">
+                <div class="w-12 h-12 bg-purple-600/10 text-purple-400 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">💼</div>
+                <h3 class="text-xl font-bold text-white mb-3">Живая экономика</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Покупай заправки, магазины, казино. Работай в такси, полиции или МЧС. Выбор за тобой!</p>
+            </div>
+            <!-- Карточка 3 -->
+            <div class="bg-[#131520] p-8 rounded-2xl border border-gray-800 hover:border-purple-500/40 transition group">
+                <div class="w-12 h-12 bg-purple-600/10 text-purple-400 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">👥</div>
+                <h3 class="text-xl font-bold text-white mb-3">Сходки и Семьи</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Создавай свои группировки, воюй за районы, катайся с друзьями по ночным городам и устраивай жесткие тусовки.</p>
+            </div>
+        </div>
+    </section>
 
-    // Кнопка: Накопить очки
-    document.getElementById('btn-accumulate').addEventListener('click', () => {
-        statusEl.innerText = "";
-        
-        // Проверяем случайный сбой (слив)
-        if (Math.random() < crashChance) {
-            statusEl.innerHTML = "<span style='color: red;'>Ой! Очки сгорели до того, как ты их слил в банк!</span>";
-            points = 0;
-            crashChance = 0.05; // Сброс риска
-        } else {
-            points += Math.floor(Math.random() * 10) + 5;
-            crashChance += 0.03; // С каждым шагом риск растет
-            statusEl.innerText = "Очки растут! Риск обнуления увеличился.";
-        }
-        pointsEl.innerText = points;
-    });
+    <!-- КАК НАЧАТЬ ИГРАТЬ (ИНСТРУКЦИЯ) -->
+    <section id="how-to-start" class="bg-[#0f111a] border-y border-purple-950/40 py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-black text-center text-white mb-16 uppercase tracking-wide">
+                Три простых шага, <span class="text-purple-500">чтобы войти в игру</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <!-- Шаг 1 -->
+                <div class="text-center relative">
+                    <div class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-4 shadow-lg shadow-purple-500/20">1</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Скачай клиент</h3>
+                    <p class="text-gray-400 text-sm max-w-xs mx-auto mb-4">Загрузи наш официальный лаунчер на свой Android, iOS или ПК.</p>
+                    <button class="bg-purple-600/20 hover:bg-purple-600 text-purple-300 hover:text-white font-bold text-xs py-2 px-4 rounded-lg transition">Скачать .APK</button>
+                </div>
+                <!-- Шаг 2 -->
+                <div class="text-center relative">
+                    <div class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-4 shadow-lg shadow-purple-500/20">2</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Придумай ник</h3>
+                    <p class="text-gray-400 text-sm max-w-xs mx-autoя">Придумай имя в формате Имя_Фамилия (например, Vasya_Petrov) и вставь его в настройки лаунчера.</p>
+                </div>
+                <!-- Шаг 3 -->
+                <div class="text-center relative">
+                    <div class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-4 shadow-lg shadow-purple-500/20">3</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Запускай и играй</h3>
+                    <p class="text-gray-400 text-sm max-w-xs mx-auto">Выбирай любой из наших серверов, проходи регистрацию и забирай стартовые бонусы!</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Кнопка: Слить в банк (зафиксировать)
-    document.getElementById('btn-cashout').addEventListener('click', () => {
-        if (points > 0) {
-            bank += points;
-            statusEl.innerHTML = `<span style='color: green;'>Успешно! Ты слил ${points} очков в банк.</span>`;
-            points = 0;
-            crashChance = 0.05; // Сброс риска
-            pointsEl.innerText = points;
-            bankEl.innerText = bank;
-        } else {
-            statusEl.innerText = "Нечего сливать, сначала накопи очки!";
-        }
-    });
-</script>
+    <!-- ФУТЕР (ПОДВАЛ САЙТА) -->
+    <footer class="bg-[#07080c] text-gray-500 text-xs py-12 px-6 border-t border-gray-900 text-center">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-left">
+                <p class="text-sm font-bold text-white mb-1">YOURRP GAMES STUDIO</p>
+                <p>© Все права защищены. Проект не связан с Rockstar Games.</p>
+            </div>
+            <div class="flex space-x-6 text-sm">
+                <a href="#" class="hover:text-white transition">Донат</a>
+                <a href="#" class="hover:text-white transition">Соглашение</a>
+                <a href="#" class="hover:text-white transition">Поддержка</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
