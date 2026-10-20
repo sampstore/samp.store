@@ -340,6 +340,30 @@ body.menu-open {
     border-color: #229ed9;
     box-shadow: 0 4px 20px rgba(34, 158, 217, 0.3);
   }
+/* Фикс карточек в разделе "Быстрый старт" */
+.instruction .grid-3, 
+.instruction div[class*="card"], 
+.instruction .menu-column,
+.instruction div {
+  height: auto !important; /* Убираем жесткую высоту, чтобы карточка растягивалась */
+  min-height: 280px;       /* Задаем минимальную высоту для выравнивания */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important; /* Кнопка всегда будет аккуратно внизу */
+  padding-bottom: 24px !important; /* Добавляем красивый отступ снизу до кнопки */
+}
+
+/* Фикс самой белой кнопки лаунчера */
+.instruction a[href*="launcher.apk"], 
+.instruction button, 
+.instruction .btn-launcher,
+.instruction a {
+  margin-top: 15px !important; /* Отодвигаем кнопку от текста */
+  position: relative !important;
+  bottom: 0 !important;
+  width: 100% !important; /* Делаем её аккуратно по ширине карточки */
+  box-sizing: border-box !important;
+}
 }
 </style>
 
