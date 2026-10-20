@@ -208,31 +208,28 @@ footer { background:#010104; border-top:1px solid rgba(255,255,255,0.04); paddin
 
 <!-- Встроенные стили -->
 <style>
-/* Квадратная кнопка со скругленными углами, оранжево-розовым градиентом (СДВИНУТА ВЫШЕ) */
+/* Квадратная кнопка со скругленными углами */
 .ios-burger-btn {
   position: fixed !important;
-  top: 16px !important; /* Подняли кнопку выше к верхнему краю экрана */
-  /* calc предотвращает прыжки кнопки при скрытии скроллбара */
-  right: calc(20px + (100vw - 100%)) !important;
+  top: 16px !important; /* Четкое положение по высоте */
+  right: calc(20px + (100vw - 100%)) !important; /* Убирает прыжки при скрытии скролла */
   z-index: 99999 !important;
   
-  /* Строго квадратные пропорции */
   width: 54px;
   height: 54px;
-  border-radius: 15px; /* Аккуратное скругление углов по стилю iOS */
+  border-radius: 15px;
   border: none;
   
-  /* Сочный оранжево-розовый градиент в цвет надписи MOBILE */
+  /* Фирменный оранжево-розовый градиент */
   background: linear-gradient(135deg, #ff7518 0%, #ec008c 100%) !important;
   
-  /* Идеальное центрирование полосок внутри квадрата */
+  /* Жесткое центрирование содержимого */
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   padding: 0 !important;
   cursor: pointer;
   
-  /* Свечение в тон градиента кнопки */
   box-shadow: 0 0 20px rgba(236, 0, 140, 0.4);
   transition: all 0.2s ease;
 }
@@ -247,30 +244,32 @@ footer { background:#010104; border-top:1px solid rgba(255,255,255,0.04); paddin
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 22px;  /* Длина полосок */
-  height: 14px; /* Расстояние между ними */
+  width: 22px;
+  height: 14px;
   position: relative;
 }
 
-/* Сами белые полоски */
+/* Белые полоски */
 .ios-burger-lines span {
   display: block;
   width: 100%;
-  height: 2.5px; /* Толщина линий */
+  height: 2.5px;
   background-color: #ffffff;
   border-radius: 2px;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center; /* Центрируем точку вращения для каждой линии */
 }
 
-/* Ровный крестик при открытии меню */
+/* Железобетонно ровный крестик без смещений влево/вправо */
 .ios-burger-btn.active .ios-burger-lines span:nth-child(1) { 
-  transform: translateY(6px) rotate(45deg); 
+  transform: translateY(5.75px) rotate(45deg); 
 }
 .ios-burger-btn.active .ios-burger-lines span:nth-child(2) { 
   opacity: 0; 
+  transform: scale(0);
 }
 .ios-burger-btn.active .ios-burger-lines span:nth-child(3) { 
-  transform: translateY(-6px) rotate(-45deg); 
+  transform: translateY(-5.75px) rotate(-45deg); 
 }
 
 /* Полноэкранный оверлей меню */
@@ -290,7 +289,7 @@ footer { background:#010104; border-top:1px solid rgba(255,255,255,0.04); paddin
 }
 .raketka-overlay.open { opacity: 1; pointer-events: auto; }
 
-/* Блокировка прокрутки основного сайта при открытом меню */
+/* Блокировка прокрутки фона при открытом меню */
 body.menu-open {
   overflow: hidden !important;
 }
