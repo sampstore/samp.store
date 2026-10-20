@@ -208,129 +208,138 @@ footer { background:#010104; border-top:1px solid rgba(255,255,255,0.04); paddin
 
 <!-- Встроенные стили -->
 <style>
-/* Квадратная кнопка со скругленными углами */
-.ios-burger-btn {
-  position: fixed !important;
-  top: 16px !important; /* Четкое положение по высоте */
-  right: calc(20px + (100vw - 100%)) !important; /* Убирает прыжки при скрытии скролла */
-  z-index: 99999 !important;
-  
-  width: 54px;
-  height: 54px;
-  border-radius: 15px;
-  border: none;
-  
-  /* Фирменный оранжево-розовый градиент */
-  background: linear-gradient(135deg, #ff7518 0%, #ec008c 100%) !important;
-  
-  /* Жесткое центрирование содержимого */
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
-  cursor: pointer;
-  
-  box-shadow: 0 0 20px rgba(236, 0, 140, 0.4);
-  transition: all 0.2s ease;
-}
-
-.ios-burger-btn:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 25px rgba(255, 117, 24, 0.6);
-}
-
-/* Контейнер для трех полосок */
-.ios-burger-lines {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 22px;
-  height: 14px;
-  position: relative;
-}
-
-/* Белые полоски */
-.ios-burger-lines span {
-  display: block;
-  width: 100%;
-  height: 2.5px;
-  background-color: #ffffff;
-  border-radius: 2px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center; /* Центрируем точку вращения для каждой линии */
-}
-
-/* Железобетонно ровный крестик без смещений влево/вправо */
-.ios-burger-btn.active .ios-burger-lines span:nth-child(1) { 
-  transform: translateY(5.75px) rotate(45deg); 
-}
-.ios-burger-btn.active .ios-burger-lines span:nth-child(2) { 
-  opacity: 0; 
-  transform: scale(0);
-}
-.ios-burger-btn.active .ios-burger-lines span:nth-child(3) { 
-  transform: translateY(-5.75px) rotate(-45deg); 
-}
-
-/* Полноэкранный оверлей меню */
+/* По умолчанию СКРЫВАЕМ кнопку и оверлей на компьютерах */
+.ios-burger-btn, 
 .raketka-overlay {
-  position: fixed !important;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(11, 12, 16, 0.98);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: 99998 !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
+  display: none !important;
 }
-.raketka-overlay.open { opacity: 1; pointer-events: auto; }
 
 /* Блокировка прокрутки фона при открытом меню */
 body.menu-open {
   overflow: hidden !important;
 }
 
-/* Сетка кнопок внутри меню */
-.menu-container { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 14px; 
-  width: 85%; 
-  max-width: 400px; 
-}
+/* ВКЛЮЧАЕМ И НАСТРАИВАЕМ МЕНЮ ТОЛЬКО ДЛЯ МОБИЛЬНЫХ ЭКРАНОВ */
+@media (max-width: 992px) {
+  /* Квадратная кнопка со скругленными углами */
+  .ios-burger-btn {
+    position: fixed !important;
+    top: 16px !important; 
+    right: calc(20px + (100vw - 100%)) !important; /* Убирает прыжки при скрытии скролла */
+    z-index: 99999 !important;
+    
+    width: 54px;
+    height: 54px;
+    border-radius: 15px;
+    border: none;
+    
+    /* Фирменный оранжево-розовый градиент */
+    background: linear-gradient(135deg, #ff7518 0%, #ec008c 100%) !important;
+    
+    /* Жесткое центрирование содержимого */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    cursor: pointer;
+    
+    box-shadow: 0 0 20px rgba(236, 0, 140, 0.4);
+    transition: all 0.2s ease;
+  }
 
-/* Оформление ссылок в меню */
-.menu-link {
-  display: flex; align-items: center; justify-content: center;
-  height: 54px; border-radius: 12px; text-decoration: none;
-  color: #eff1f5; font-weight: 700; font-size: 13px; letter-spacing: 0.8px;
-  border: none; font-family: inherit; cursor: pointer; transition: all 0.2s ease;
-}
-.menu-link:hover { transform: translateY(-2px); }
+  .ios-burger-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px rgba(255, 117, 24, 0.6);
+  }
 
-/* Темные стильные кнопки меню */
-.dark-btn { 
-  background: rgba(255, 255, 255, 0.03); 
-  border: 1px solid rgba(255, 255, 255, 0.06); 
-}
-.dark-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 117, 24, 0.4);
-}
+  /* Контейнер для трех полосок */
+  .ios-burger-lines {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 22px;
+    height: 14px;
+    position: relative;
+  }
 
-/* Кнопка Телеграма */
-.tg-btn { 
-  background: #242731; 
-  border: 1px solid rgba(34, 158, 217, 0.3);
-}
-.tg-btn:hover {
-  background: #229ed9;
-  border-color: #229ed9;
-  box-shadow: 0 4px 20px rgba(34, 158, 217, 0.3);
+  /* Белые полоски */
+  .ios-burger-lines span {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+  }
+
+  /* Железобетонно ровный крестик без смещений */
+  .ios-burger-btn.active .ios-burger-lines span:nth-child(1) { 
+    transform: translateY(5.75px) rotate(45deg); 
+  }
+  .ios-burger-btn.active .ios-burger-lines span:nth-child(2) { 
+    opacity: 0; 
+    transform: scale(0);
+  }
+  .ios-burger-btn.active .ios-burger-lines span:nth-child(3) { 
+    transform: translateY(-5.75px) rotate(-45deg); 
+  }
+
+  /* Полноэкранный оверлей меню */
+  .raketka-overlay {
+    position: fixed !important;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(11, 12, 16, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 99998 !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .raketka-overlay.open { opacity: 1; pointer-events: auto; }
+
+  /* Сетка кнопок внутри меню */
+  .menu-container { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 14px; 
+    width: 85%; 
+    max-width: 400px; 
+  }
+
+  /* Оформление ссылок в меню */
+  .menu-link {
+    display: flex; align-items: center; justify-content: center;
+    height: 54px; border-radius: 12px; text-decoration: none;
+    color: #eff1f5; font-weight: 700; font-size: 13px; letter-spacing: 0.8px;
+    border: none; font-family: inherit; cursor: pointer; transition: all 0.2s ease;
+  }
+  .menu-link:hover { transform: translateY(-2px); }
+
+  /* Темные стильные кнопки меню */
+  .dark-btn { 
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid rgba(255, 255, 255, 0.06); 
+  }
+  .dark-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 117, 24, 0.4);
+  }
+
+  /* Кнопка Телеграма */
+  .tg-btn { 
+    background: #242731; 
+    border: 1px solid rgba(34, 158, 217, 0.3);
+  }
+  .tg-btn:hover {
+    background: #229ed9;
+    border-color: #229ed9;
+    box-shadow: 0 4px 20px rgba(34, 158, 217, 0.3);
+  }
 }
 </style>
 
