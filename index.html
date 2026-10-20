@@ -61,7 +61,6 @@ nav { position:fixed; top:0; left:0; right:0; height:80px; z-index:100; backgrou
 <nav>
 <div class="logo-box"><div class="logo">РАКЕТКА<span> </span>РП</div><div class="sublogo">by NEXUS CODER</div></div>
 <div class="menu"><a href="#servers">Сервера</a><a href="#media">Сообщество</a><a href="#how-to">Как начать</a></div>
-<button onclick="toggleM(true)" class="btn-donate"><i class="fa-solid fa-ghost" style="margin-right:6px;"></i>Донат</button>
 </nav>
 
 <style>
@@ -183,18 +182,179 @@ footer { background:#010104; border-top:1px solid rgba(255,255,255,0.04); paddin
 </div>
 </section>
 
-<div id="donate-modal" class="overlay">
-<div class="popup">
-<button onclick="toggleM(false)" class="close">✕</button>
-<h3>Пополнение счета</h3>
-<form onsubmit="event.preventDefault(); alert('Перенаправление к оплате...');">
-<div class="row"><label>Игровой Никнейм</label><input type="text" required placeholder="Ivan_Ivanov"></div>
-<div class="row"><label>Сумма пополнения (₽)</label><input type="number" required placeholder="1000"></div>
-<div class="row"><label>Выбери Сервер</label><select><option>01 // EMERALD</option><option>02 // RUBY</option><option>03 // SAPPHIRE</option></select></div>
-<button type="submit" class="btn-donate" style="width:100%; padding:16px; font-size:12px; margin-top:10px;">Оплатить донат</button>
-</form>
+<!-- Кнопка и меню (БЕЗ ДОНАТА) -->
+<button class="ios-burger-btn" id="menuBtn" aria-label="Открыть меню">
+  <div class="ios-burger-lines">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</button>
+
+<div class="raketka-overlay" id="menuOverlay">
+  <div class="menu-container">
+    <!-- Левая колонка кнопок -->
+    <div class="menu-column">
+      <a href="#servers" class="menu-link dark-btn">СЕРВЕРА</a>
+      <a href="#community" class="menu-link dark-btn">СООБЩЕСТВО</a>
+      <a href="#how-to" class="menu-link dark-btn">КАК НАЧАТЬ</a>
+    </div>
+    <!-- Правая колонка — только Telegram на всю ширину -->
+    <div class="menu-column">
+      <a href="https://t.me/crmp_darkrp" target="_blank" class="menu-link tg-btn" style="height: 100%; min-height: 54px;">TELEGRAM</a>
+    </div>
+  </div>
 </div>
-</div>
+
+<!-- Встроенные стили -->
+<style>
+/* Квадратная кнопка со скругленными углами, оранжево-розовым градиентом (СДВИНУТА ВЫШЕ) */
+.ios-burger-btn {
+  position: fixed !important;
+  top: 16px !important; /* Подняли кнопку выше к верхнему краю экрана */
+  /* calc предотвращает прыжки кнопки при скрытии скроллбара */
+  right: calc(20px + (100vw - 100%)) !important;
+  z-index: 99999 !important;
+  
+  /* Строго квадратные пропорции */
+  width: 54px;
+  height: 54px;
+  border-radius: 15px; /* Аккуратное скругление углов по стилю iOS */
+  border: none;
+  
+  /* Сочный оранжево-розовый градиент в цвет надписи MOBILE */
+  background: linear-gradient(135deg, #ff7518 0%, #ec008c 100%) !important;
+  
+  /* Идеальное центрирование полосок внутри квадрата */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  cursor: pointer;
+  
+  /* Свечение в тон градиента кнопки */
+  box-shadow: 0 0 20px rgba(236, 0, 140, 0.4);
+  transition: all 0.2s ease;
+}
+
+.ios-burger-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 25px rgba(255, 117, 24, 0.6);
+}
+
+/* Контейнер для трех полосок */
+.ios-burger-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;  /* Длина полосок */
+  height: 14px; /* Расстояние между ними */
+  position: relative;
+}
+
+/* Сами белые полоски */
+.ios-burger-lines span {
+  display: block;
+  width: 100%;
+  height: 2.5px; /* Толщина линий */
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ровный крестик при открытии меню */
+.ios-burger-btn.active .ios-burger-lines span:nth-child(1) { 
+  transform: translateY(6px) rotate(45deg); 
+}
+.ios-burger-btn.active .ios-burger-lines span:nth-child(2) { 
+  opacity: 0; 
+}
+.ios-burger-btn.active .ios-burger-lines span:nth-child(3) { 
+  transform: translateY(-6px) rotate(-45deg); 
+}
+
+/* Полноэкранный оверлей меню */
+.raketka-overlay {
+  position: fixed !important;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(11, 12, 16, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 99998 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.raketka-overlay.open { opacity: 1; pointer-events: auto; }
+
+/* Блокировка прокрутки основного сайта при открытом меню */
+body.menu-open {
+  overflow: hidden !important;
+}
+
+/* Сетка кнопок внутри меню */
+.menu-container { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 14px; 
+  width: 85%; 
+  max-width: 400px; 
+}
+
+/* Оформление ссылок в меню */
+.menu-link {
+  display: flex; align-items: center; justify-content: center;
+  height: 54px; border-radius: 12px; text-decoration: none;
+  color: #eff1f5; font-weight: 700; font-size: 13px; letter-spacing: 0.8px;
+  border: none; font-family: inherit; cursor: pointer; transition: all 0.2s ease;
+}
+.menu-link:hover { transform: translateY(-2px); }
+
+/* Темные стильные кнопки меню */
+.dark-btn { 
+  background: rgba(255, 255, 255, 0.03); 
+  border: 1px solid rgba(255, 255, 255, 0.06); 
+}
+.dark-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 117, 24, 0.4);
+}
+
+/* Кнопка Телеграма */
+.tg-btn { 
+  background: #242731; 
+  border: 1px solid rgba(34, 158, 217, 0.3);
+}
+.tg-btn:hover {
+  background: #229ed9;
+  border-color: #229ed9;
+  box-shadow: 0 4px 20px rgba(34, 158, 217, 0.3);
+}
+</style>
+
+<!-- Логика работы без доната -->
+<script>
+  (function() {
+    const btn = document.getElementById('menuBtn');
+    const overlay = document.getElementById('menuOverlay');
+    if(!btn || !overlay) return;
+
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      overlay.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.menu-link').forEach(link => {
+      link.addEventListener('click', () => {
+        btn.classList.remove('active');
+        overlay.classList.remove('open');
+      });
+    });
+  })();
+</script>
 
 <footer>
 <div class="f-wrap">
